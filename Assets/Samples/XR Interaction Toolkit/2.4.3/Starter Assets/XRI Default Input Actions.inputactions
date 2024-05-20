@@ -976,7 +976,7 @@
                     "name": "StartGame",
                     "type": "Button",
                     "id": "79529e33-5d55-482f-8f0d-5b2abc4fa56c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -1196,7 +1196,7 @@
                     "name": "",
                     "id": "ecf407df-cfeb-498e-b9b6-bdab754baa0a",
                     "path": "<XRController>{RightHand}/{PrimaryButton}",
-                    "interactions": "Hold(duration=2)",
+                    "interactions": "Hold(duration=1)",
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "StartGame",
