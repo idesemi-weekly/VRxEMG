@@ -6,7 +6,7 @@ public class ObstacleMove : MonoBehaviour
 
     private void Start()
     {
-        leftBound = Camera.main.ViewportToWorldPoint(Vector3.zero).x - 2f;
+        leftBound = Camera.main.ViewportToScreenPoint(Vector3.zero).x - 1f;
     }
 
     private void Update()
