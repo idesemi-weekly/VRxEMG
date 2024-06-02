@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player1 : MonoBehaviour
 {
     private CharacterController character;
     private Vector3 direction;
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("ObstacleCollision"))
         {
-            GameManager.Instance.GameOver();
+            GameManager.Instance.GameOver(1);
         }
     }
 }

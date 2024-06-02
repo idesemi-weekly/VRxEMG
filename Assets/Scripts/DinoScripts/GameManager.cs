@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Unity.Services.Lobbies.Models;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,10 +10,13 @@ public class GameManager : MonoBehaviour
     public float acceleration = 0.1f;
     public float speed {get; private set;}
 
-    public TextMeshProUGUI youlostText;
-    public TextMeshProUGUI youwinText;
+    public TextMeshProUGUI youlostTextP1;
+    public TextMeshProUGUI youwinTextP1;
+    public TextMeshProUGUI youlostTextP2;
+    public TextMeshProUGUI youwinTextP2;
 
-    private Player player;
+    private Player1 player1;
+    private Player2 player2;
     private Spawner spawner;
 
     private void Awake()
@@ -38,7 +42,8 @@ public class GameManager : MonoBehaviour
     [System.Obsolete]
     private void Start()
     {
-        player = FindFirstObjectByType<Player>();
+        player1 = FindFirstObjectByType<Player1>();
+        player2 = FindFirstObjectByType<Player2>();
         spawner = FindFirstObjectByType<Spawner>();
         
         Game();
@@ -57,21 +62,34 @@ public class GameManager : MonoBehaviour
         speed = initialSpeed;
         enabled = true;
 
-        player.gameObject.SetActive(true);
+        player1.gameObject.SetActive(true);
+        player2.gameObject.SetActive(true);
         spawner.gameObject.SetActive(true);
-        youlostText.gameObject.SetActive(false);
-        youwinText.gameObject.SetActive(false);
+        youlostTextP1.gameObject.SetActive(false);
+        youwinTextP1.gameObject.SetActive(false);
+        youlostTextP2.gameObject.SetActive(false);
+        youwinTextP2.gameObject.SetActive(false);
     }
 
-    public void GameOver()
+    public void GameOver(int p)
     {
         speed = 0f;
         enabled = false;
 
-        player.gameObject.SetActive(false);
+        if(p == 1)
+        {
+            youlostTextP1.gameObject.SetActive(true);
+            youwinTextP2.gameObject.SetActive(true);
+        }
+        else
+        {
+            youlostTextP2.gameObject.SetActive(true);
+            youwinTextP1.gameObject.SetActive(true);
+        }
+
+        player1.gameObject.SetActive(false);
+        player2.gameObject.SetActive(false);
         spawner.gameObject.SetActive(false);
-        youlostText.gameObject.SetActive(true);
-        //youwinText.gameObject.SetActive(true); NEED CONDITION/RPC FOR THAT
     }
 
     private void Update()
