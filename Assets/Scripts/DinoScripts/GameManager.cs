@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
 
     private Player1 player1;
     private Player2 player2;
-    private Spawner spawner;
+    private Spawner1 spawner1;
+    private Spawner2 spawner2;
 
     private void Awake()
     {
@@ -44,7 +45,8 @@ public class GameManager : MonoBehaviour
     {
         player1 = FindFirstObjectByType<Player1>();
         player2 = FindFirstObjectByType<Player2>();
-        spawner = FindFirstObjectByType<Spawner>();
+        spawner1 = FindFirstObjectByType<Spawner1>();
+        spawner2 = FindFirstObjectByType<Spawner2>();
         
         Game();
     }
@@ -64,7 +66,8 @@ public class GameManager : MonoBehaviour
 
         player1.gameObject.SetActive(true);
         player2.gameObject.SetActive(true);
-        spawner.gameObject.SetActive(true);
+        spawner1.gameObject.SetActive(true);
+        spawner2.gameObject.SetActive(true);
         youlostTextP1.gameObject.SetActive(false);
         youwinTextP1.gameObject.SetActive(false);
         youlostTextP2.gameObject.SetActive(false);
@@ -89,7 +92,9 @@ public class GameManager : MonoBehaviour
 
         player1.gameObject.SetActive(false);
         player2.gameObject.SetActive(false);
-        spawner.gameObject.SetActive(false);
+        spawner1.gameObject.SetActive(false);
+        spawner2.gameObject.SetActive(false);
+
     }
 
     private void Update()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class Spawner1 : MonoBehaviour
 {
     [System.Serializable]
     public struct SpawnableObject
