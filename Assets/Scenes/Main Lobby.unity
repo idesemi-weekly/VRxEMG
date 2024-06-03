@@ -6272,6 +6272,75 @@ MonoBehaviour:
   m_MinimumScaleRatio: 0.25
   m_MaximumScaleRatio: 2
   m_ScaleMultiplier: 0.25
+--- !u!1001 &1282545023
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 933749713943597773, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150930411821782046, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 10.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529141308415819328, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.151111
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529141308415819328, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529141308415819328, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 22.081802
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529141308415819328, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529141308415819328, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529141308415819328, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529141308415819328, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529141308415819328, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529141308415819328, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529141308415819328, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6266966514741576476, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_Name
+      value: DinoGamePrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202766235321222632, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 10.1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
 --- !u!4 &1296517436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2871854917430088270, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
@@ -11565,3 +11634,4 @@ SceneRoots:
   - {fileID: 1565887663878291441}
   - {fileID: 1703568386}
   - {fileID: 866042545}
+  - {fileID: 1282545023}
