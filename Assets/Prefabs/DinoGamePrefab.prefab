@@ -1180,7 +1180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379ca0c4a33efb5419e49c6e41c4c89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpAction: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  jumpAction: {fileID: 2370704253290164699, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   gravity: 19.62
   jumpForce: 8
 --- !u!1 &6266966514741576476
@@ -1652,7 +1652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b105825ccd565ca42b0d10fd1890616b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpAction: {fileID: -4272743775101177364, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  jumpAction: {fileID: -6320804495217546129, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   gravity: 19.62
   jumpForce: 8
 --- !u!114 &3919643044407414550
