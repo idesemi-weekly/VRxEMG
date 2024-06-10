@@ -2,6 +2,7 @@
 
 -------------------
 
+
 ## Requirements :
 
 - A PC
@@ -10,10 +11,12 @@
 - Python (ver>=3.8)
 - Unity 6 Preview (for now, might not be needed in the future)
 
+
 ## Features :
 
 - Multiplayer minigames (Dino Run, Pong, etc.) that will allow you to compete and experience a WarioWare-like game in VR.
 - EMG sensors to control the player input (this is done directly by the server)
+
 
 ## Installation :
 
@@ -33,11 +36,13 @@ git clone https://github.com/idesemi-weekly/EMGVRMINIGAMES.git
 
 6. Enjoy !
 
+
 ## Tips :
 
 - You only need controllers to navigate the menu and the main lobby, the rest of the game is controlled by the EMG sensors, so remove them as you wish.
 
 - The game is still in development, so some features may not work as intended, we also plan to add more and more microgames to it.
+
 
 ## Authors :
 
@@ -45,9 +50,11 @@ git clone https://github.com/idesemi-weekly/EMGVRMINIGAMES.git
 
 - [Valentin CAZIN](https://github.com/ItsMyRainbow) : EMG implementation and microgame developer
 
+
 ## License :
 
 This project is licensed under the MIT License - see the LICENSE.md file for details.
+
 
 ## Estimated pre-release date :
 
