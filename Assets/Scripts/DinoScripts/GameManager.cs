@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using Unity.Services.Lobbies.Models;
 
 public class GameManager : MonoBehaviour
 {
@@ -83,11 +82,13 @@ public class GameManager : MonoBehaviour
         {
             youlostTextP1.gameObject.SetActive(true);
             youwinTextP2.gameObject.SetActive(true);
+            HP.Hearts_1--;
         }
         else
         {
             youlostTextP2.gameObject.SetActive(true);
             youwinTextP1.gameObject.SetActive(true);
+            HP.Hearts_2--;
         }
 
         player1.gameObject.SetActive(false);
