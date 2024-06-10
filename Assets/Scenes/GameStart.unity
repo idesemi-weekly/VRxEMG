@@ -2838,7 +2838,6 @@ GameObject:
   - component: {fileID: 568332005}
   - component: {fileID: 568332004}
   - component: {fileID: 568332006}
-  - component: {fileID: 568332007}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -2939,22 +2938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19691f01841d97e4d880cf4972ea5e90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxConnection: 2
+  maxConnection: 3
   transport: {fileID: 568332004}
---- !u!114 &568332007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568332002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f540a48312c9960409483891635bc2a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serverIP: 172.16.182.150
-  serverPort: 5005
 --- !u!1 &602859959
 GameObject:
   m_ObjectHideFlags: 0

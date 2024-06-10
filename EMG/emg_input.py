@@ -12,7 +12,7 @@ def main():
     print("EMG stream found!")
 
     # initialize thresholds and variables for storing time 
-    time_thres = 100
+    time_thres = 200
     prev_time = 0
     pinky_thres = .7
     pointer_thres = .6
@@ -29,7 +29,7 @@ def main():
 
         elif (sample[1] >= pointer_thres) & (curr_time - time_thres > prev_time):  # if an EMG peak from channel 2 is detected from and enough time has gone by since the last one, press key
             prev_time = curr_time  # update time
-            pyautogui.press('p')
+            #pyautogui.press('p')
 
         elif (sample[2] >= pointer_thres) & (curr_time - time_thres > prev_time):  # if an EMG peak from channel 3 is detected and enough time has gone by since the last one, press key
             prev_time = curr_time  # update time
