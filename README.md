@@ -1,7 +1,6 @@
-# EMGVRMINIGAMES
-Run on Unity 6 Preview only !
+### EMGVRMINIGAMES
 
-Using EMG and VR, we created a multiplayer game composed of microgames.
+-------------------
 
 ## Requirements :
 
@@ -42,8 +41,9 @@ git clone https://github.com/idesemi-weekly/EMGVRMINIGAMES.git
 
 ## Authors :
 
-- [Dylan THOMAS]
-- [Valentin CAZIN]
+- [Dylan THOMAS](https://github.com/Dylouwu)
+
+- [Valentin CAZIN](https://github.com/ItsMyRainbow)
 
 ## License :
 
