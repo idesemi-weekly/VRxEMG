@@ -2938,7 +2938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19691f01841d97e4d880cf4972ea5e90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxConnection: 2
+  maxConnection: 3
   transport: {fileID: 568332004}
 --- !u!1 &602859959
 GameObject:
