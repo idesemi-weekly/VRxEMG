@@ -7,6 +7,7 @@
     "com.unity.learn.iet-framework": "3.1.3",
     "com.unity.multiplayer.playmode": "1.0.0",
     "com.unity.netcode.gameobjects": "1.8.1",
+    "com.vladfaust.unitywakatime": "https://github.com/vladfaust/unity-wakatime.git#package",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
     "com.unity.postprocessing": "3.4.0",
     "com.unity.render-pipelines.universal": "17.0.3",
