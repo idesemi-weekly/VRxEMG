@@ -5,8 +5,8 @@
 ## Requirements :
 
 - A computer
-- 2 EMG sensors (with the [OpenBCI app](https://openbci.com/downloads))
-- 2 VR headsets with the game APK installed (Oculus Quest) or through the EXE with linking.
+- 2 EMG sensors (with the [OpenBCI app](https://openbci.com/downloads)) (Valentin add dongle... what is needed tysm)
+- 2 VR headsets with the game APK installed (Oculus Quest) or through the EXE with VR linking.
 - Python (ver>=3.8)
 - Unity 6 Preview (for now, might not be needed in the future)
 
