@@ -706,7 +706,7 @@
                     "name": "Menu",
                     "type": "Button",
                     "id": "1fcf80fe-5589-4002-9147-cbbc6d8e0be7",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -1917,6 +1917,54 @@
                     "processors": "",
                     "groups": "",
                     "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Keyboard/EMG",
+            "id": "37e013d7-f5dc-4ae3-9f53-d78521a74711",
+            "actions": [
+                {
+                    "name": "Player 1 Jump",
+                    "type": "Button",
+                    "id": "642a2595-9017-4f97-95c0-1b706db91ca7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Player 2 Jump",
+                    "type": "Button",
+                    "id": "d16f932c-7dc9-4cec-ad2f-2e501dc5c3f3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d55b2606-e70b-4c88-b1ae-6c93891548b0",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player 2 Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eba0e41a-2ed4-4c4a-bc2e-ec70d03ff28a",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player 1 Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
