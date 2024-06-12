@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
         player2.gameObject.SetActive(false);
         spawner1.gameObject.SetActive(false);
         spawner2.gameObject.SetActive(false);
+        //wait 3 seconds and remove the game on the screen
 
     }
 
