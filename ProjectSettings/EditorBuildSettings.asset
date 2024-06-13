@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScene.unity
     guid: 4e9fef26e6adb88479ad1b9834a32d94
   - enabled: 1
-    path: Assets/Scenes/GameStart.unity
+    path: Assets/Scenes/Game Lobby.unity
     guid: 72f0d257757401a42aa8659c0fb8895a
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}

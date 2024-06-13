@@ -12,7 +12,7 @@ using System.Collections;
 
 public class NetworkConnect : MonoBehaviour
 {
-    public int maxConnection = 2;
+    public int maxConnection = 3;
     public UnityTransport transport;
 
     private Lobby currentLobby;

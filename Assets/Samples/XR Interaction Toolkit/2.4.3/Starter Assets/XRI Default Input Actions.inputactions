@@ -1927,7 +1927,7 @@
             "id": "37e013d7-f5dc-4ae3-9f53-d78521a74711",
             "actions": [
                 {
-                    "name": "Player 1 Jump",
+                    "name": "Player 1 Jump/Ready",
                     "type": "Button",
                     "id": "642a2595-9017-4f97-95c0-1b706db91ca7",
                     "expectedControlType": "",
@@ -1936,7 +1936,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Player 2 Jump",
+                    "name": "Player 2 Jump/Ready",
                     "type": "Button",
                     "id": "d16f932c-7dc9-4cec-ad2f-2e501dc5c3f3",
                     "expectedControlType": "",
@@ -1953,7 +1953,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Player 2 Jump",
+                    "action": "Player 2 Jump/Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1964,7 +1964,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Player 1 Jump",
+                    "action": "Player 1 Jump/Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
