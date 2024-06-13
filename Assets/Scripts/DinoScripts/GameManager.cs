@@ -1,7 +1,8 @@
 using UnityEngine;
 using TMPro;
+using Unity.Netcode;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     public static GameManager Instance { get; private set; }
 
@@ -82,17 +83,17 @@ public class GameManager : MonoBehaviour
         {
             youlostTextP1.gameObject.SetActive(true);
             youwinTextP2.gameObject.SetActive(true);
+            player1.gameObject.SetActive(false);
             HP.Hearts_1--;
         }
         else
         {
+            player2.gameObject.SetActive(false);
             youlostTextP2.gameObject.SetActive(true);
             youwinTextP1.gameObject.SetActive(true);
             HP.Hearts_2--;
         }
 
-        player1.gameObject.SetActive(false);
-        player2.gameObject.SetActive(false);
         spawner1.gameObject.SetActive(false);
         spawner2.gameObject.SetActive(false);
         //wait 3 seconds and remove the game on the screen
