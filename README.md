@@ -1,6 +1,6 @@
 # EMGVRMINIGAMES
 
--------------------
+Only Local Multiplayer is available and we have no plan to make an online release, too complex to handle with EMGs and we will need to have intrusive permissions to make this work, which goes agaisnt our principles.
 
 
 ## Requirements :
