@@ -1,4 +1,3 @@
-using UnityEngine;
 using Unity.Netcode.Components;
 
 public class NetworkTransformClient : NetworkTransform
