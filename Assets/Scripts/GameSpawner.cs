@@ -1,6 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameSpawner : NetworkBehaviour//might need to change this to NetworkBehaviour
 {   
@@ -11,6 +12,9 @@ public class GameSpawner : NetworkBehaviour//might need to change this to Networ
 
     [SerializeField] private GameObject check1;
     [SerializeField] private GameObject check2;
+    [SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject player1Win;
+    [SerializeField] private GameObject player2Win;
     
     [SerializeField] private InputActionReference Player1Ready;
     [SerializeField] private InputActionReference Player2Ready;
@@ -65,6 +69,24 @@ public class GameSpawner : NetworkBehaviour//might need to change this to Networ
             check1.SetActive(false);
             check2.SetActive(false);
             OnDisable();
+        }
+
+        if (HP.Hearts_1 == 0)
+        {
+            Debug.Log("Game Over");
+            gameOver.SetActive(true);
+            player2Win.SetActive(true);
+            System.Threading.Thread.Sleep(5000);
+            NetworkManager.Singleton.SceneManager.LoadScene("Main Lobby", LoadSceneMode.Single);
+        }
+        
+        if (HP.Hearts_2 == 0)
+        {
+            Debug.Log("Game Over");
+            gameOver.SetActive(true);
+            player1Win.SetActive(true);
+            System.Threading.Thread.Sleep(5000);
+            NetworkManager.Singleton.SceneManager.LoadScene("Main Lobby", LoadSceneMode.Single);
         }
     }
 
