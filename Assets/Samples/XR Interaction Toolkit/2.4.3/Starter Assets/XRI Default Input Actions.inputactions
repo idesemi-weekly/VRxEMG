@@ -973,7 +973,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "StartGame",
+                    "name": "ToggleTutorials",
                     "type": "Button",
                     "id": "79529e33-5d55-482f-8f0d-5b2abc4fa56c",
                     "expectedControlType": "",
@@ -1199,7 +1199,7 @@
                     "interactions": "Hold(duration=1)",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "StartGame",
+                    "action": "ToggleTutorials",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

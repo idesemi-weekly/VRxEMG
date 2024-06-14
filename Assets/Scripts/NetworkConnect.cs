@@ -8,7 +8,6 @@ using Unity.Services.Relay.Models;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using System.Collections.Generic;
-using System.Collections;
 
 public class NetworkConnect : MonoBehaviour
 {
