@@ -58,14 +58,15 @@ public class PlayerReadyCheck : NetworkBehaviour
         if (p1ready && p2ready)
         {
             Debug.Log("Both players are ready");
-            StartGame();
+            Invoke(nameof(StartGame), 5f);
+            //add object
         }
     }
 
     private void StartGame()
     {
         // This will load the scene for all clients
-        NetworkManager.Singleton.SceneManager.LoadScene("Game Lobby", LoadSceneMode.Single);
+        NetworkManager.Singleton.SceneManager.LoadScene("Game", LoadSceneMode.Single);
     }
 
     /*
