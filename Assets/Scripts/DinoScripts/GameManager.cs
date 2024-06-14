@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using Unity.Netcode;
+using System.Collections;
 
 public class GameManager : NetworkBehaviour
 {
@@ -32,7 +33,7 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void OnDestroy()
     {
         if (Instance == this)
         {
@@ -78,7 +79,7 @@ public class GameManager : NetworkBehaviour
     {
         speed = 0f;
         enabled = false;
-
+    
         if(p == 1)
         {
             youlostTextP1.gameObject.SetActive(true);
@@ -93,11 +94,11 @@ public class GameManager : NetworkBehaviour
             youwinTextP1.gameObject.SetActive(true);
             HP.Hearts_2--;
         }
-
+    
         spawner1.gameObject.SetActive(false);
         spawner2.gameObject.SetActive(false);
         //wait 3 seconds and remove the game on the screen
-
+        GameSpawn.Instance.DestroyGame();
     }
 
     private void Update()

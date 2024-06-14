@@ -128,8 +128,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 17056115}
-  - component: {fileID: 17056114}
   - component: {fileID: 17056116}
+  - component: {fileID: 17056114}
   m_Layer: 0
   m_Name: RandomGameSpawner(SERVER ONLY)
   m_TagString: Untagged
@@ -151,6 +151,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   games:
   - {fileID: 6266966514741576476, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
+  tutorials: []
+  check1: {fileID: 0}
+  check2: {fileID: 0}
+  gameOver: {fileID: 0}
+  player1Win: {fileID: 0}
+  player2Win: {fileID: 0}
+  Player1Ready: {fileID: -6320804495217546129, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  Player2Ready: {fileID: 2370704253290164699, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!4 &17056115
 Transform:
   m_ObjectHideFlags: 0
@@ -160,7 +168,7 @@ Transform:
   m_GameObject: {fileID: 17056113}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.111821, y: 1.7958031, z: -0.78294206}
+  m_LocalPosition: {x: -9.01, y: 1.7958031, z: -0.735}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2905,7 +2913,6 @@ GameObject:
   - component: {fileID: 568332003}
   - component: {fileID: 568332005}
   - component: {fileID: 568332004}
-  - component: {fileID: 568332006}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -2994,20 +3001,6 @@ MonoBehaviour:
     OldPrefabList: []
   RunInBackground: 1
   LogLevel: 0
---- !u!114 &568332006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568332002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19691f01841d97e4d880cf4972ea5e90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxConnection: 3
-  transport: {fileID: 568332004}
 --- !u!1 &602859959
 GameObject:
   m_ObjectHideFlags: 0
@@ -9605,19 +9598,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7179462289238023466, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.38
+      value: -4.062
       objectReference: {fileID: 0}
     - target: {fileID: 7179462289238023466, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7179462289238023466, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.31
+      value: -25.416
       objectReference: {fileID: 0}
     - target: {fileID: 7179462289238023466, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.38268343
+      value: -0.38268325
       objectReference: {fileID: 0}
     - target: {fileID: 7179462289238023466, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -9625,11 +9618,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7179462289238023466, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.92387956
+      value: 0.9238796
       objectReference: {fileID: 0}
     - target: {fileID: 7179462289238023466, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7179462289238023466, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9637,7 +9630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7179462289238023466, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 135
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 7179462289238023466, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
