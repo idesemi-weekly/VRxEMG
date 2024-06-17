@@ -39,7 +39,8 @@ public class PlayerReadyCheck : NetworkBehaviour
         {
             p1ready = true;
             Debug.Log("Player 1 is ready");
-            check1.SetActive(true);
+            if (check1 != null) check1.SetActive(false);
+            CheckPlayersReady();
         }
     }
 
@@ -49,11 +50,12 @@ public class PlayerReadyCheck : NetworkBehaviour
         {
             p2ready = true;
             Debug.Log("Player 2 is ready");
-            check2.SetActive(true);
+            if (check2 != null) check2.SetActive(false);
+            CheckPlayersReady();
         }
     }
 
-    private void Update()//this is not necessary, calling a function in onplayer1ready and onplayer2ready is better but not working???
+    private void CheckPlayersReady()//this is not necessary, calling a function in onplayer1ready and onplayer2ready is better but not working???
     {
         if (p1ready && p2ready)
         {

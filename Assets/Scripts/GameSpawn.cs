@@ -8,7 +8,8 @@ public class GameSpawn : NetworkBehaviour
 {
 
     public static GameSpawn Instance { get; private set; }
-
+    
+    private GameObject game;
     public GameObject[] games;
     public GameObject[] tutorials;
     private bool p1ready = false;
@@ -45,7 +46,8 @@ public class GameSpawn : NetworkBehaviour
         Player1Ready.action.started += OnPlayer1Ready;
         Player2Ready.action.started += OnPlayer2Ready;
 
-        randomIndex = Random.Range(0, games.Length);
+        randomIndex = Random.Range(0, games.Length); //choose random game
+        Debug.Log("Random index: " + randomIndex);
         //TutorialSpawn(); // Spawn tutorial at the start of the game
     }
 
@@ -105,20 +107,20 @@ public class GameSpawn : NetworkBehaviour
         if (p1ready && p2ready)
         {
             Debug.Log("Both players are ready");
-            SpawnGame();
             p1ready = false;
             p2ready = false;
             if (check1 != null) check1.SetActive(false);//remove condition soon
             if (check2 != null) check2.SetActive(false);
             OnDisable(); // Disable input actions after game starts
+            SpawnGame();
         }
     }
 
-    private void Update()
-    {
+    private void GameOver(){
+
         if (HP.Hearts_1 == 0)
         {
-            Debug.Log("Game Over");
+            Debug.Log("Game Over for P1");
             if (gameOver != null) gameOver.SetActive(true);
             if (player2Win != null) player2Win.SetActive(true);
             Invoke("EndGame", 5);
@@ -126,12 +128,14 @@ public class GameSpawn : NetworkBehaviour
 
         if (HP.Hearts_2 == 0)
         {
-            Debug.Log("Game Over");
+            Debug.Log("Game Over for P2");
             if (gameOver != null) gameOver.SetActive(true);
             if (player1Win != null) player1Win.SetActive(true);
             Invoke("EndGame", 5);
         }
+
     }
+
 
     private void EndGame()
     {
@@ -139,10 +143,15 @@ public class GameSpawn : NetworkBehaviour
     }
 
 
-    private void SpawnGame()
+    private void SpawnGame()//async void await
     {
-        GameObject game = Instantiate(games[randomIndex], Vector3.zero, Quaternion.identity);
+        game = Instantiate(games[randomIndex], Vector3.zero, Quaternion.identity);
         game.GetComponent<NetworkObject>().Spawn();
+    }
+
+    public void StartDestroyGame()
+    {
+        StartCoroutine(DestroyGame());
     }
 
     //FIX THIS NEVER CALLING FUNCTION HELP cause of ienumerator
@@ -150,7 +159,22 @@ public class GameSpawn : NetworkBehaviour
     {   
         yield return new WaitForSeconds(3);
         Debug.Log("Destroying game");
-        //Destroy(game);
-        OnEnable();
+        Destroy(game);
+        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("ObstacleCollision");
+        foreach (GameObject obstacle in obstacles)
+        {
+            Destroy(obstacle);
+        }
+        Debug.Log(p1ready);
+        Debug.Log(p2ready);
+
+        if (HP.Hearts_1 == 0 || HP.Hearts_2 == 0)
+        {
+            GameOver();
+        }
+        else
+        {
+            OnEnable();
+        }
     }
 }
