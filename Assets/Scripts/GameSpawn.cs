@@ -72,14 +72,7 @@ public class GameSpawn : NetworkBehaviour
         {
             p1ready = true;
             Debug.Log("Player 1 is ready");
-            if (check1 != null)
-            {
-                check1.SetActive(true);
-            }
-            else
-            {
-                Debug.LogError("check1 GameObject is not assigned.");
-            }
+            if (check1 != null) check1.SetActive(true);
             CheckPlayersReady();
         }
     }
@@ -90,14 +83,7 @@ public class GameSpawn : NetworkBehaviour
         {
             p2ready = true;
             Debug.Log("Player 2 is ready");
-            if (check2 != null)
-            {
-                check2.SetActive(true);
-            }
-            else
-            {
-                Debug.LogError("check2 GameObject is not assigned.");
-            }
+            if (check2 != null) check2.SetActive(true);
             CheckPlayersReady();
         }
     }
@@ -125,8 +111,7 @@ public class GameSpawn : NetworkBehaviour
             if (player2Win != null) player2Win.SetActive(true);
             Invoke("EndGame", 5);
         }
-
-        if (HP.Hearts_2 == 0)
+        else if (HP.Hearts_2 == 0)
         {
             Debug.Log("Game Over for P2");
             if (gameOver != null) gameOver.SetActive(true);
@@ -139,6 +124,8 @@ public class GameSpawn : NetworkBehaviour
 
     private void EndGame()
     {
+        HP.Hearts_1 = 3;
+        HP.Hearts_2 = 3;
         NetworkManager.Singleton.SceneManager.LoadScene("Main Lobby", LoadSceneMode.Single);
     }
 
@@ -154,17 +141,18 @@ public class GameSpawn : NetworkBehaviour
         StartCoroutine(DestroyGame());
     }
 
-    //FIX THIS NEVER CALLING FUNCTION HELP cause of ienumerator
     public IEnumerator DestroyGame()
     {   
         yield return new WaitForSeconds(3);
         Debug.Log("Destroying game");
         Destroy(game);
+
         GameObject[] obstacles = GameObject.FindGameObjectsWithTag("ObstacleCollision");
         foreach (GameObject obstacle in obstacles)
         {
             Destroy(obstacle);
         }
+
         Debug.Log(p1ready);
         Debug.Log(p2ready);
 

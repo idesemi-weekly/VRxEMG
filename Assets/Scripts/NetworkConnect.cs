@@ -20,7 +20,11 @@ public class NetworkConnect : MonoBehaviour
     private async void Awake()
     {
         await UnityServices.InitializeAsync();
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        
+        if (!AuthenticationService.Instance.IsSignedIn)
+        {
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        }
 
         JoinOrCreate();
     }
