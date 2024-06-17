@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Netcode;
 
 public class Spawner1 : MonoBehaviour
 {
@@ -17,12 +18,18 @@ public class Spawner1 : MonoBehaviour
 
     private void OnEnable()
     {
-        Invoke(nameof(SpawnObject), Random.Range(minSpawnRate, maxSpawnRate));
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsServer) // Only the server spawns objects
+        {
+            Invoke(nameof(SpawnObject), Random.Range(minSpawnRate, maxSpawnRate));
+        }
     }
 
     private void OnDisable()
     {
-        CancelInvoke();
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsServer)
+        {
+            CancelInvoke();
+        }
     }
 
     private void SpawnObject()
@@ -35,6 +42,16 @@ public class Spawner1 : MonoBehaviour
             {
                 GameObject obstacle = Instantiate(obj.prefab);
                 obstacle.transform.position += transform.position;
+
+                NetworkObject networkObject = obstacle.GetComponent<NetworkObject>();
+                if (networkObject != null)
+                {
+                    networkObject.Spawn();
+                }
+                else
+                {
+                    Debug.LogError("NetworkObject component missing on prefab: " + obj.prefab.name);
+                }
                 break;
             }
             else
