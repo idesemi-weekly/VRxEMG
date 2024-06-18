@@ -152,6 +152,10 @@ MonoBehaviour:
   games:
   - {fileID: 6266966514741576476, guid: 6a8ede9cc8014e24ea7b9606c80f7e64, type: 3}
   tutorials: []
+  players1:
+  - {fileID: 992539901644603012, guid: 39fb23be783c54c4ba27ef1e9780775e, type: 3}
+  players2:
+  - {fileID: 3214054350048378649, guid: f64467e3d7da2bb41872336f9b634cd0, type: 3}
   check1: {fileID: 0}
   check2: {fileID: 0}
   gameOver: {fileID: 0}
