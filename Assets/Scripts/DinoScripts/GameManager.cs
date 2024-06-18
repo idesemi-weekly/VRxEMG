@@ -16,8 +16,8 @@ public class GameManager : NetworkBehaviour
     public TextMeshProUGUI youlostTextP2;
     public TextMeshProUGUI youwinTextP2;
 
-    private Player1 player1;
-    private Player2 player2;
+    //private Player1 player1;
+    //private Player2 player2;
     private Spawner1 spawner1;
     private Spawner2 spawner2;
 
@@ -44,8 +44,8 @@ public class GameManager : NetworkBehaviour
     [System.Obsolete]
     private void Start()
     {
-        player1 = FindFirstObjectByType<Player1>();
-        player2 = FindFirstObjectByType<Player2>();
+        //player1 = FindFirstObjectByType<Player1>();
+        //player2 = FindFirstObjectByType<Player2>();
         spawner1 = FindFirstObjectByType<Spawner1>();
         spawner2 = FindFirstObjectByType<Spawner2>();
         
@@ -65,8 +65,8 @@ public class GameManager : NetworkBehaviour
         speed = initialSpeed;
         enabled = true;
 
-        player1.gameObject.SetActive(true);
-        player2.gameObject.SetActive(true);
+        //player1.gameObject.SetActive(true);
+        //player2.gameObject.SetActive(true);
         spawner1.gameObject.SetActive(true);
         spawner2.gameObject.SetActive(true);
         youlostTextP1.gameObject.SetActive(false);
@@ -93,8 +93,8 @@ public class GameManager : NetworkBehaviour
             HP.Hearts_2--;
         }
 
-        player1.gameObject.SetActive(false);
-        player2.gameObject.SetActive(false);
+        //player1.gameObject.SetActive(false);
+        //player2.gameObject.SetActive(false);
         spawner1.gameObject.SetActive(false);
         spawner2.gameObject.SetActive(false);
         //wait 3 seconds and remove the game on the screen

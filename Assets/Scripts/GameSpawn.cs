@@ -10,8 +10,14 @@ public class GameSpawn : NetworkBehaviour
     public static GameSpawn Instance { get; private set; }
     
     private GameObject game;
+    private GameObject tutorial;
+    private GameObject player1;
+    private GameObject player2;
+
     public GameObject[] games;
     public GameObject[] tutorials;
+    public GameObject[] players1;
+    public GameObject[] players2;
     private bool p1ready = false;
     private bool p2ready = false;
     private int randomIndex;
@@ -62,7 +68,7 @@ public class GameSpawn : NetworkBehaviour
 
     private void TutorialSpawn()
     {
-        GameObject tutorial = Instantiate(tutorials[randomIndex], Vector3.zero, Quaternion.identity);
+        tutorial = Instantiate(tutorials[randomIndex], Vector3.zero, Quaternion.identity);
         tutorial.GetComponent<NetworkObject>().Spawn();
     }
 
@@ -134,6 +140,10 @@ public class GameSpawn : NetworkBehaviour
     {
         game = Instantiate(games[randomIndex], Vector3.zero, Quaternion.identity);
         game.GetComponent<NetworkObject>().Spawn();
+        player1 = Instantiate(players1[randomIndex], players1[randomIndex].transform.position, Quaternion.identity);
+        player1.GetComponent<NetworkObject>().Spawn();
+        player2 = Instantiate(players2[randomIndex], players2[randomIndex].transform.position, Quaternion.identity);
+        player2.GetComponent<NetworkObject>().Spawn();
     }
 
     public void StartDestroyGame()
@@ -143,18 +153,18 @@ public class GameSpawn : NetworkBehaviour
 
     public IEnumerator DestroyGame()
     {   
+        Destroy(player1);
+        Destroy(player2);
         yield return new WaitForSeconds(3);
         Debug.Log("Destroying game");
         Destroy(game);
+        
 
         GameObject[] obstacles = GameObject.FindGameObjectsWithTag("ObstacleCollision");
         foreach (GameObject obstacle in obstacles)
         {
             Destroy(obstacle);
         }
-
-        Debug.Log(p1ready);
-        Debug.Log(p2ready);
 
         if (HP.Hearts_1 == 0 || HP.Hearts_2 == 0)
         {
