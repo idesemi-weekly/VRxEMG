@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4311149238118705512}
   - component: {fileID: 8949585074190375433}
   - component: {fileID: 7210924245836441414}
+  - component: {fileID: 79670134341262875}
   - component: {fileID: 2748560788965493958}
   - component: {fileID: 6075651053679684810}
-  - component: {fileID: 79670134341262875}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -116,6 +116,27 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &79670134341262875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992539901644603012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 4185294544
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &2748560788965493958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,24 +167,3 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 9138bd4196615a14a840d76bdc47f64b, type: 3}
   - {fileID: 21300000, guid: 9dd7d801937e5a742a96b945cfa468ac, type: 3}
---- !u!114 &79670134341262875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992539901644603012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4185294544
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1

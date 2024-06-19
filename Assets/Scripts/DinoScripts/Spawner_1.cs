@@ -44,14 +44,7 @@ public class Spawner1 : MonoBehaviour
                 obstacle.transform.position += transform.position;
 
                 NetworkObject networkObject = obstacle.GetComponent<NetworkObject>();
-                if (networkObject != null)
-                {
-                    networkObject.Spawn();
-                }
-                else
-                {
-                    Debug.LogError("NetworkObject component missing on prefab: " + obj.prefab.name);
-                }
+                networkObject.Spawn();
                 break;
             }
             else

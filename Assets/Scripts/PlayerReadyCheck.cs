@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerReadyCheck : NetworkBehaviour
 {
-    private bool p1ready = false;
-    private bool p2ready = false;
+    private NetworkVariable<bool> p1ready = new NetworkVariable<bool>(false);
+    private NetworkVariable<bool> p2ready = new NetworkVariable<bool>(false);
 
     [SerializeField] private GameObject check1;
     [SerializeField] private GameObject check2;
@@ -33,49 +33,67 @@ public class PlayerReadyCheck : NetworkBehaviour
         Player2Ready.action.started -= ctx => OnPlayer2Ready();
     }
 
+    private void Start()
+    {
+        p1ready.OnValueChanged += OnP1ReadyChanged;
+        p2ready.OnValueChanged += OnP2ReadyChanged;
+    }
+
+    private void OnDestroy()
+    {
+        p1ready.OnValueChanged -= OnP1ReadyChanged;
+        p2ready.OnValueChanged -= OnP2ReadyChanged;
+    }
+
     private void OnPlayer1Ready()
     {
-        if (!p1ready) //no need to servercheck since this is going to be on serveronly component
+        if (!p1ready.Value && IsServer) // Check if the server and player is not ready
         {
-            p1ready = true;
+            p1ready.Value = true;
             Debug.Log("Player 1 is ready");
-            if (check1 != null) check1.SetActive(false);
+            if (check1 != null) check1.SetActive(true);
             CheckPlayersReady();
         }
     }
 
     private void OnPlayer2Ready()
     {
-        if (!p2ready)
+        if (!p2ready.Value && IsServer) // Check if the server and player is not ready
         {
-            p2ready = true;
+            p2ready.Value = true;
             Debug.Log("Player 2 is ready");
-            if (check2 != null) check2.SetActive(false);
+            if (check2 != null) check2.SetActive(true);
             CheckPlayersReady();
         }
     }
 
-    private void CheckPlayersReady()//this is not necessary, calling a function in onplayer1ready and onplayer2ready is better but not working???
+    private void OnP1ReadyChanged(bool oldValue, bool newValue)
     {
-        if (p1ready && p2ready)
+        if (newValue)
+        {
+            check1.SetActive(true);
+        }
+    }
+
+    private void OnP2ReadyChanged(bool oldValue, bool newValue)
+    {
+        if (newValue)
+        {
+            check2.SetActive(true);
+        }
+    }
+
+    private void CheckPlayersReady()
+    {
+        if (p1ready.Value && p2ready.Value)
         {
             Debug.Log("Both players are ready");
-            Invoke(nameof(StartGame), 5f);
-            //add object
+            Invoke(nameof(StartGame), 3f);
         }
     }
 
     private void StartGame()
     {
-        // This will load the scene for all clients
         NetworkManager.Singleton.SceneManager.LoadScene("Game", LoadSceneMode.Single);
     }
-
-    /*
-    //not sure if this is necessary, since if we want to play again it might cause a conflict
-    private void OnDestroy()
-    {
-        Player1Ready.action.Dispose();
-        Player2Ready.action.Dispose();
-    }*/
 }

@@ -18,7 +18,7 @@ public class Spawner2 : MonoBehaviour
 
     private void OnEnable()
     {
-        if (NetworkManager.Singleton.IsServer)
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsServer) // Only the server spawns objects
         {
             Invoke(nameof(SpawnObject), Random.Range(minSpawnRate, maxSpawnRate));
         }
@@ -26,7 +26,7 @@ public class Spawner2 : MonoBehaviour
 
     private void OnDisable()
     {
-        if (NetworkManager.Singleton.IsServer)
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsServer)
         {
             CancelInvoke();
         }
@@ -44,10 +44,7 @@ public class Spawner2 : MonoBehaviour
                 obstacle.transform.position += transform.position;
 
                 NetworkObject networkObject = obstacle.GetComponent<NetworkObject>();
-                if (networkObject != null)
-                {
-                    networkObject.Spawn();
-                }
+                networkObject.Spawn();
                 break;
             }
             else

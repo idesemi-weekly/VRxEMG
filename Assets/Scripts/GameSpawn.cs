@@ -3,10 +3,10 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameSpawn : NetworkBehaviour
 {
-
     public static GameSpawn Instance { get; private set; }
     
     private GameObject game;
@@ -18,10 +18,12 @@ public class GameSpawn : NetworkBehaviour
     public GameObject[] tutorials;
     public GameObject[] players1;
     public GameObject[] players2;
-    private bool p1ready = false;
-    private bool p2ready = false;
+    private NetworkVariable<bool> p1ready = new NetworkVariable<bool>(false);
+    private NetworkVariable<bool> p2ready = new NetworkVariable<bool>(false);
     private int randomIndex;
     
+    [SerializeField] private GameObject P1HUD;
+    [SerializeField] private GameObject P2HUD;
     [SerializeField] private GameObject check1;
     [SerializeField] private GameObject check2;
     [SerializeField] private GameObject gameOver;
@@ -30,6 +32,9 @@ public class GameSpawn : NetworkBehaviour
 
     [SerializeField] private InputActionReference Player1Ready;
     [SerializeField] private InputActionReference Player2Ready;
+
+    [SerializeField] private TMP_Text P1HP_text;
+    [SerializeField] private TMP_Text P2HP_text;
 
     private void Awake()
     {
@@ -48,13 +53,11 @@ public class GameSpawn : NetworkBehaviour
         Player1Ready.action.Enable();
         Player2Ready.action.Enable();
 
-        // Adding context calls allows us to not use Update() to check for input
         Player1Ready.action.started += OnPlayer1Ready;
         Player2Ready.action.started += OnPlayer2Ready;
 
         randomIndex = Random.Range(0, games.Length); //choose random game
-        Debug.Log("Random index: " + randomIndex);
-        //TutorialSpawn(); // Spawn tutorial at the start of the game
+        Debug.Log("Game n°" + randomIndex);
     }
 
     private void OnDisable()
@@ -66,50 +69,94 @@ public class GameSpawn : NetworkBehaviour
         Player2Ready.action.started -= OnPlayer2Ready;
     }
 
-    private void TutorialSpawn()
+    private void Start()
     {
-        tutorial = Instantiate(tutorials[randomIndex], Vector3.zero, Quaternion.identity);
-        tutorial.GetComponent<NetworkObject>().Spawn();
+        p1ready.OnValueChanged += OnP1ReadyChanged;
+        p2ready.OnValueChanged += OnP2ReadyChanged;
+
+        P1HP_text.text = HP.Hearts_1 + " HP";
+        P2HP_text.text = HP.Hearts_2 + " HP";
+    }
+
+    private void OnDestroy()
+    {
+        p1ready.OnValueChanged -= OnP1ReadyChanged;
+        p2ready.OnValueChanged -= OnP2ReadyChanged;
     }
 
     private void OnPlayer1Ready(InputAction.CallbackContext ctx)
     {
-        if (!p1ready)
+        if (!p1ready.Value && IsServer)
         {
-            p1ready = true;
+            p1ready.Value = true;
             Debug.Log("Player 1 is ready");
-            if (check1 != null) check1.SetActive(true);
+            check1.SetActive(true);
+            UpdateCheckOnClientRPC(1, true);
             CheckPlayersReady();
         }
     }
 
     private void OnPlayer2Ready(InputAction.CallbackContext ctx)
     {
-        if (!p2ready)
+        if (!p2ready.Value && IsServer)
         {
-            p2ready = true;
+            p2ready.Value = true;
             Debug.Log("Player 2 is ready");
-            if (check2 != null) check2.SetActive(true);
+            check2.SetActive(true);
+            UpdateCheckOnClientRPC(2, true);
             CheckPlayersReady();
+        }
+    }
+
+    private void OnP1ReadyChanged(bool oldValue, bool newValue)
+    {
+        UpdateCheckOnClientRPC(1, newValue);
+    }
+
+    private void OnP2ReadyChanged(bool oldValue, bool newValue)
+    {
+        UpdateCheckOnClientRPC(2, newValue);
+    }
+
+    [ClientRpc]
+    private void UpdateCheckOnClientRPC(int player, bool ready)
+    {
+        if (player == 1)
+        {
+            check1.SetActive(ready);
+        }
+        else if (player == 2)
+        {
+            check2.SetActive(ready);
         }
     }
 
     private void CheckPlayersReady()
     {
-        if (p1ready && p2ready)
+        if (p1ready.Value && p2ready.Value)
         {
             Debug.Log("Both players are ready");
-            p1ready = false;
-            p2ready = false;
-            if (check1 != null) check1.SetActive(false);//remove condition soon
-            if (check2 != null) check2.SetActive(false);
-            OnDisable(); // Disable input actions after game starts
+            p1ready.Value = false;
+            p2ready.Value = false;
+            check1.SetActive(false);
+            check2.SetActive(false);
+            P1HUD.SetActive(false);
+            P2HUD.SetActive(false);
+            UpdateHUDOnClientRPC(false);
+            OnDisable(); // Disable input actions after game starts  
             SpawnGame();
         }
     }
 
-    private void GameOver(){
+    [ClientRpc]
+    private void UpdateHUDOnClientRPC(bool active)
+    {
+        P1HUD.SetActive(active);
+        P2HUD.SetActive(active);
+    }
 
+    private void GameOver()
+    {
         if (HP.Hearts_1 == 0)
         {
             Debug.Log("Game Over for P1");
@@ -124,9 +171,7 @@ public class GameSpawn : NetworkBehaviour
             if (player1Win != null) player1Win.SetActive(true);
             Invoke("EndGame", 5);
         }
-
     }
-
 
     private void EndGame()
     {
@@ -135,8 +180,7 @@ public class GameSpawn : NetworkBehaviour
         NetworkManager.Singleton.SceneManager.LoadScene("Main Lobby", LoadSceneMode.Single);
     }
 
-
-    private void SpawnGame()//async void await
+    private void SpawnGame()
     {
         game = Instantiate(games[randomIndex], Vector3.zero, Quaternion.identity);
         game.GetComponent<NetworkObject>().Spawn();
@@ -155,23 +199,27 @@ public class GameSpawn : NetworkBehaviour
     {   
         Destroy(player1);
         Destroy(player2);
+        P1HP_text.text = HP.Hearts_1 + " HP";
+        P2HP_text.text = HP.Hearts_2 + " HP";
         yield return new WaitForSeconds(3);
         Debug.Log("Destroying game");
         Destroy(game);
-        
 
         GameObject[] obstacles = GameObject.FindGameObjectsWithTag("ObstacleCollision");
         foreach (GameObject obstacle in obstacles)
         {
             Destroy(obstacle);
         }
-
+        
         if (HP.Hearts_1 == 0 || HP.Hearts_2 == 0)
         {
             GameOver();
         }
         else
         {
+            P1HUD.SetActive(true);
+            P2HUD.SetActive(true);
+            UpdateHUDOnClientRPC(true);
             OnEnable();
         }
     }
