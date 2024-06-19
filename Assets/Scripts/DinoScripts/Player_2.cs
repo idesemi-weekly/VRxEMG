@@ -31,18 +31,14 @@ public class Player2 : NetworkBehaviour
     {
         if (!IsServer)
         {
-            // Client-side movement prediction
             return;
         }
-
-        // Server-side authoritative movement
         MovementServerRpc();
     }
 
     [ServerRpc]
     private void MovementServerRpc()
     {
-        // Server-side authoritative movement
         direction += Vector3.down * gravity * Time.deltaTime;
 
         if (character.isGrounded && jumpAction.action.triggered)
@@ -52,7 +48,6 @@ public class Player2 : NetworkBehaviour
 
         character.Move(direction * Time.deltaTime);
 
-        // Synchronize position across clients
         UpdateClientRpc(direction);
     }
 
@@ -62,14 +57,13 @@ public class Player2 : NetworkBehaviour
         // Update position on clients
         if (!IsServer)
         {
-            Debug.Log("Updating client position");
             character.Move(serverDirection * Time.deltaTime);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
+            
         if (other.CompareTag("ObstacleCollision"))
         {
             GameManager.Instance.GameOver(2);

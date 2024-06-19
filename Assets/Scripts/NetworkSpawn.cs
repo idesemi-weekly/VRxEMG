@@ -9,7 +9,7 @@ public class NetworkSpawn : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if (IsServer)//to remove
+        if (IsServer)//to remove (no?)
         {
             foreach(var obj in objectToSpawnPrefab)
             {
