@@ -6,7 +6,9 @@ Only Local Multiplayer is available and we have no plan to make an online releas
 ## Requirements :
 
 - A PC
-- 2 EMG sensors (with the [OpenBCI app](https://openbci.com/downloads)) (#Valentin add dongle... what is needed tysm)
+- 5 EMG sensors (with the [OpenBCI app](https://openbci.com/downloads)
+- 1 Cyton Board
+- 1 OpenBCI Bluetooth Dongle 
 - 2 VR headsets with the game APK installed (Oculus Quest) or through the EXE with VR linking.
 - Python (ver>=3.8 and the following dependencies : #)
 - Unity 6 Preview (for now, might not be needed in the future)
@@ -26,15 +28,17 @@ Only Local Multiplayer is available and we have no plan to make an online releas
 git clone https://github.com/idesemi-weekly/EMGVRMINIGAMES.git
 ```
 
-2. Open the OpenBCI application and connect the EMG sensors and the dongle, attach the sensors to the arms of each players (#depending on the channels need Valentin to fill this part, TBD). 
+2. Open the OpenBCI application and connect the EMG sensors and the dongle, attach the sensors to the arms of each players.
 
-3. Run emg_input.py (in EMG/emg_input.py) to get the EMG data from the sensors.
+3. On the OpenBCI application use the networking window to setup the LSL protocol. 
 
-4. Open the Unity project and run the game (as a server).
+4. Run emg_input.py (in EMG/emg_input.py) to get the EMG data from the sensors.
 
-5. Run the game on the VR headsets (as clients, either through the APKs or the EXEs).
+5. Open the Unity project and run the game (as a server).
 
-6. Enjoy !
+6. Run the game on the VR headsets (as clients, either through the APKs or the EXEs).
+
+7. Enjoy !
 
 
 ## Tips :
