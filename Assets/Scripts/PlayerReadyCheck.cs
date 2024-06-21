@@ -14,6 +14,8 @@ public class PlayerReadyCheck : NetworkBehaviour
     [SerializeField] private InputActionReference Player1Ready;
     [SerializeField] private InputActionReference Player2Ready;
 
+    public FadeScreen fadeScreen;
+
     private void OnEnable()
     {
         Player1Ready.action.Enable();
@@ -88,6 +90,7 @@ public class PlayerReadyCheck : NetworkBehaviour
         if (p1ready.Value && p2ready.Value)
         {
             Debug.Log("Both players are ready");
+            fadeScreen.FadeOut();
             Invoke(nameof(StartGame), 3f);
         }
     }
