@@ -36,6 +36,8 @@ public class GameSpawn : NetworkBehaviour
     [SerializeField] private TMP_Text P1HP_text;
     [SerializeField] private TMP_Text P2HP_text;
 
+    public FadeScreen fadeScreen;
+
     private void Awake()
     {
         if (Instance == null)
@@ -160,17 +162,17 @@ public class GameSpawn : NetworkBehaviour
         if (HP.Hearts_1 == 0)
         {
             Debug.Log("Game Over for P1");
-            if (gameOver != null) gameOver.SetActive(true);
             if (player2Win != null) player2Win.SetActive(true);
-            Invoke("EndGame", 5);
         }
         else if (HP.Hearts_2 == 0)
         {
             Debug.Log("Game Over for P2");
-            if (gameOver != null) gameOver.SetActive(true);
             if (player1Win != null) player1Win.SetActive(true);
-            Invoke("EndGame", 5);
         }
+
+        if (gameOver != null) gameOver.SetActive(true);
+        fadeScreen.FadeOut();
+        Invoke("EndGame", 3);
     }
 
     private void EndGame()
