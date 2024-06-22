@@ -52,7 +52,6 @@ public class PlayerReadyCheck : NetworkBehaviour
         if (!p1ready.Value && IsServer) // Check if the server and player is not ready
         {
             p1ready.Value = true;
-            Debug.Log("Player 1 is ready");
             if (check1 != null) check1.SetActive(true);
             CheckPlayersReady();
         }
@@ -63,7 +62,6 @@ public class PlayerReadyCheck : NetworkBehaviour
         if (!p2ready.Value && IsServer) // Check if the server and player is not ready
         {
             p2ready.Value = true;
-            Debug.Log("Player 2 is ready");
             if (check2 != null) check2.SetActive(true);
             CheckPlayersReady();
         }
@@ -89,7 +87,6 @@ public class PlayerReadyCheck : NetworkBehaviour
     {
         if (p1ready.Value && p2ready.Value)
         {
-            Debug.Log("Both players are ready");
             fadeScreen.FadeOut();
             Invoke(nameof(StartGame), 3f);
         }

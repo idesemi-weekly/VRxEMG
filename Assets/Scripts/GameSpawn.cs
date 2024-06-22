@@ -91,7 +91,6 @@ public class GameSpawn : NetworkBehaviour
         if (!p1ready.Value && IsServer)
         {
             p1ready.Value = true;
-            Debug.Log("Player 1 is ready");
             check1.SetActive(true);
             UpdateCheckOnClientRPC(1, true);
             CheckPlayersReady();
@@ -103,7 +102,6 @@ public class GameSpawn : NetworkBehaviour
         if (!p2ready.Value && IsServer)
         {
             p2ready.Value = true;
-            Debug.Log("Player 2 is ready");
             check2.SetActive(true);
             UpdateCheckOnClientRPC(2, true);
             CheckPlayersReady();
@@ -137,7 +135,6 @@ public class GameSpawn : NetworkBehaviour
     {
         if (p1ready.Value && p2ready.Value)
         {
-            Debug.Log("Both players are ready");
             p1ready.Value = false;
             p2ready.Value = false;
             check1.SetActive(false);
@@ -161,18 +158,16 @@ public class GameSpawn : NetworkBehaviour
     {
         if (HP.Hearts_1 == 0)
         {
-            Debug.Log("Game Over for P1");
             if (player2Win != null) player2Win.SetActive(true);
         }
         else if (HP.Hearts_2 == 0)
         {
-            Debug.Log("Game Over for P2");
             if (player1Win != null) player1Win.SetActive(true);
         }
 
         if (gameOver != null) gameOver.SetActive(true);
         fadeScreen.FadeOut();
-        Invoke("EndGame", 3);
+        Invoke("EndGame", 7);
     }
 
     private void EndGame()
@@ -204,7 +199,6 @@ public class GameSpawn : NetworkBehaviour
         P1HP_text.text = HP.Hearts_1 + " HP";
         P2HP_text.text = HP.Hearts_2 + " HP";
         yield return new WaitForSeconds(3);
-        Debug.Log("Destroying game");
         Destroy(game);
 
         GameObject[] obstacles = GameObject.FindGameObjectsWithTag("ObstacleCollision");
