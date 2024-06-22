@@ -1569,7 +1569,7 @@ Transform:
   m_GameObject: {fileID: 307479290}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.946, y: -0.893, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1603,7 +1603,7 @@ Transform:
   m_GameObject: {fileID: 344744993}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.9460004, y: -0.893, z: 0.00000017881393}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7933,7 +7933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9567,7 +9567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8702287341464544874, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3
+      value: -0.583
       objectReference: {fileID: 0}
     - target: {fileID: 8702287341464544874, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10608,6 +10608,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3462571325970164595, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
+      propertyPath: m_TagString
+      value: XRRig
+      objectReference: {fileID: 0}
     - target: {fileID: 4271511168488432969, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       propertyPath: m_FacingExited.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -10767,6 +10771,7 @@ GameObject:
   - component: {fileID: 1915963979}
   - component: {fileID: 1915963977}
   - component: {fileID: 1915963978}
+  - component: {fileID: 1915963980}
   m_Layer: 0
   m_Name: ReadyCheck
   m_TagString: Untagged
@@ -10827,6 +10832,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1915963980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915963976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7636e6b6cc41734bb8f90810838bb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1969364582
 GameObject:
   m_ObjectHideFlags: 0
