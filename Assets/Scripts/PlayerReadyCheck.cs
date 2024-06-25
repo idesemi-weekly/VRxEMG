@@ -87,9 +87,15 @@ public class PlayerReadyCheck : NetworkBehaviour
     {
         if (p1ready.Value && p2ready.Value)
         {
-            fadeScreen.FadeOut();
+            FadeOutClientRpc();
             Invoke(nameof(StartGame), 3f);
         }
+    }
+
+    [ClientRpc]
+    private void FadeOutClientRpc()
+    {
+        fadeScreen.FadeOut();
     }
 
     private void StartGame()

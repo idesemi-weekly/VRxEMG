@@ -158,14 +158,14 @@ public class GameSpawn : NetworkBehaviour
     {
         if (HP.Hearts_1 == 0)
         {
-            if (player2Win != null) player2Win.SetActive(true);
+            player2Win.SetActive(true);
         }
         else if (HP.Hearts_2 == 0)
         {
-            if (player1Win != null) player1Win.SetActive(true);
+            player1Win.SetActive(true);
         }
 
-        if (gameOver != null) gameOver.SetActive(true);
+        gameOver.SetActive(true);
         fadeScreen.FadeOut();
         Invoke("EndGame", 7);
     }
@@ -194,6 +194,7 @@ public class GameSpawn : NetworkBehaviour
 
     public IEnumerator DestroyGame()
     {   
+        yield return new WaitForSeconds(0.1f);
         Destroy(player1);
         Destroy(player2);
         P1HP_text.text = HP.Hearts_1 + " HP";
