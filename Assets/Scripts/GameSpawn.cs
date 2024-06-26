@@ -60,6 +60,7 @@ public class GameSpawn : NetworkBehaviour
 
         randomIndex = Random.Range(0, games.Length); //choose random game
         Debug.Log("Game n°" + randomIndex);
+        Invoke("SpawnTutorial", 2);
     }
 
     private void OnDisable()
@@ -177,8 +178,14 @@ public class GameSpawn : NetworkBehaviour
         NetworkManager.Singleton.SceneManager.LoadScene("Main Lobby", LoadSceneMode.Single);
     }
 
+    private void SpawnTutorial()
+    {
+        tutorial = Instantiate(tutorials[randomIndex], Vector3.zero, Quaternion.identity); //spawn somewhere else
+    }
+
     private void SpawnGame()
     {
+        Destroy(tutorial);
         game = Instantiate(games[randomIndex], Vector3.zero, Quaternion.identity);
         game.GetComponent<NetworkObject>().Spawn();
         player1 = Instantiate(players1[randomIndex], players1[randomIndex].transform.position, Quaternion.identity);
