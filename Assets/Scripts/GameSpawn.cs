@@ -180,7 +180,7 @@ public class GameSpawn : NetworkBehaviour
 
     private void SpawnTutorial()
     {
-        tutorial = Instantiate(tutorials[randomIndex], Vector3.zero, Quaternion.identity); //spawn somewhere else
+        tutorial = Instantiate(tutorials[randomIndex], new Vector3(-5, 2, -23.5f), Quaternion.identity); //spawn somewhere else
     }
 
     private void SpawnGame()
