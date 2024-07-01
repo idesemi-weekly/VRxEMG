@@ -144,13 +144,14 @@ public class GameSpawn : NetworkBehaviour
             P2HUD.SetActive(false);
             UpdateHUDOnClientRPC(false);
             OnDisable(); // Disable input actions after game starts  
-            SpawnGame();
+            Invoke("SpawnGame", 2);
         }
     }
 
     [ClientRpc]
     private void UpdateHUDOnClientRPC(bool active)
     {
+        // Update HUD on clients and checks maybe?
         P1HUD.SetActive(active);
         P2HUD.SetActive(active);
     }
