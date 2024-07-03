@@ -60,7 +60,7 @@ public class GameSpawn : NetworkBehaviour
 
         randomIndex = Random.Range(0, games.Length); //choose random game
         Debug.Log("Game n°" + randomIndex);
-        Invoke("SpawnTutorial", 2);
+        Invoke("SpawnTutorial", 1);//PLAYERS CAN MASH AND THUS SPAWN TUTORIAL WILL SPAWN AFTER BEING DESTROYED??
     }
 
     private void OnDisable()
@@ -143,8 +143,9 @@ public class GameSpawn : NetworkBehaviour
             P1HUD.SetActive(false);
             P2HUD.SetActive(false);
             UpdateHUDOnClientRPC(false);
+            Destroy(tutorial);
             OnDisable(); // Disable input actions after game starts  
-            Invoke("SpawnGame", 2);
+            Invoke("SpawnGame", 1);
         }
     }
 
@@ -186,7 +187,10 @@ public class GameSpawn : NetworkBehaviour
 
     private void SpawnGame()
     {
-        Destroy(tutorial);
+        if (tutorial != null)//bug workaround
+        {
+            Destroy(tutorial);
+        }
         game = Instantiate(games[randomIndex], Vector3.zero, Quaternion.identity);
         game.GetComponent<NetworkObject>().Spawn();
         player1 = Instantiate(players1[randomIndex], players1[randomIndex].transform.position, Quaternion.identity);
@@ -216,7 +220,7 @@ public class GameSpawn : NetworkBehaviour
             Destroy(obstacle);
         }
         
-        if (HP.Hearts_1 == 0 || HP.Hearts_2 == 0)
+        if (HP.Hearts_1 <= 0 || HP.Hearts_2 <= 0)
         {
             GameOver();
         }

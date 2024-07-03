@@ -1927,7 +1927,16 @@
             "id": "37e013d7-f5dc-4ae3-9f53-d78521a74711",
             "actions": [
                 {
-                    "name": "Player 1 Jump/Ready",
+                    "name": "Player 1 Left",
+                    "type": "Button",
+                    "id": "32b1dbe2-0ad4-4b2e-8cf7-a766907db400",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Player 1 Right",
                     "type": "Button",
                     "id": "642a2595-9017-4f97-95c0-1b706db91ca7",
                     "expectedControlType": "",
@@ -1936,7 +1945,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Player 2 Jump/Ready",
+                    "name": "Player 2 Left",
+                    "type": "Button",
+                    "id": "e441dadd-fe6d-4f4b-b407-687325f70077",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Player 2 Right",
                     "type": "Button",
                     "id": "d16f932c-7dc9-4cec-ad2f-2e501dc5c3f3",
                     "expectedControlType": "",
@@ -1949,22 +1967,44 @@
                 {
                     "name": "",
                     "id": "d55b2606-e70b-4c88-b1ae-6c93891548b0",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/semicolon",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Player 2 Jump/Ready",
+                    "action": "Player 2 Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be743164-2f9d-4569-b676-2c307bc50d06",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player 2 Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "eba0e41a-2ed4-4c4a-bc2e-ec70d03ff28a",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player 1 Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "119bc9dc-eaf4-46cc-a125-f2cad06a64a7",
                     "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Player 1 Jump/Ready",
+                    "action": "Player 1 Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
