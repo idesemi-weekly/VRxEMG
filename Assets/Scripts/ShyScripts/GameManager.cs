@@ -74,6 +74,7 @@ public class ShyGuyGameManager : NetworkBehaviour
                 raisedFlag = GenerateCommand();
                 UpdateShyGuyAnimationClientRPC(raisedFlag);
 
+                //for loop here with yield return
                 yield return new WaitForSeconds(flagDelay);
 
                 bool player1Correct = CheckPlayerResponse(1);
