@@ -8,7 +8,7 @@ using TMPro;
 public class GameSpawn : NetworkBehaviour
 {
     public static GameSpawn Instance { get; private set; }
-    
+
     private GameObject game;
     private GameObject tutorial;
     private GameObject player1;
@@ -20,8 +20,8 @@ public class GameSpawn : NetworkBehaviour
     public GameObject[] players2;
     private NetworkVariable<bool> p1ready = new NetworkVariable<bool>(false);
     private NetworkVariable<bool> p2ready = new NetworkVariable<bool>(false);
-    private int randomIndex;
-    
+    private NetworkVariable<int> randomIndex = new NetworkVariable<int>();
+
     [SerializeField] private GameObject P1HUD;
     [SerializeField] private GameObject P2HUD;
     [SerializeField] private GameObject check1;
@@ -49,7 +49,7 @@ public class GameSpawn : NetworkBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     private void OnEnable()
     {
         Player1Ready.action.Enable();
@@ -58,9 +58,13 @@ public class GameSpawn : NetworkBehaviour
         Player1Ready.action.started += OnPlayer1Ready;
         Player2Ready.action.started += OnPlayer2Ready;
 
-        randomIndex = Random.Range(0, games.Length); //choose random game
-        Debug.Log("Game n°" + randomIndex);
-        Invoke("SpawnTutorial", 1);//PLAYERS CAN MASH AND THUS SPAWN TUTORIAL WILL SPAWN AFTER BEING DESTROYED??
+        if (IsServer)
+        {
+            randomIndex.Value = Random.Range(0, games.Length); // choose random game
+            Debug.Log("Game n°" + randomIndex.Value);
+        }
+
+        Invoke("SpawnTutorial", 1);
     }
 
     private void OnDisable()
@@ -143,7 +147,7 @@ public class GameSpawn : NetworkBehaviour
             P1HUD.SetActive(false);
             P2HUD.SetActive(false);
             UpdateHUDOnClientRPC(false);
-            Destroy(tutorial);
+            DestroyTutorialServerRPC();
             OnDisable(); // Disable input actions after game starts  
             Invoke("SpawnGame", 1);
         }
@@ -182,21 +186,37 @@ public class GameSpawn : NetworkBehaviour
 
     private void SpawnTutorial()
     {
-        tutorial = Instantiate(tutorials[randomIndex], new Vector3(-5, 2, -23.5f), Quaternion.identity); //spawn somewhere else
+        tutorial = Instantiate(tutorials[randomIndex.Value], new Vector3(-5, 2, -23.5f), Quaternion.identity); //spawn somewhere else
     }
 
     private void SpawnGame()
     {
-        if (tutorial != null)//bug workaround
+        if (tutorial != null) //bug workaround
+        {
+            DestroyTutorialServerRPC();
+        }
+        game = Instantiate(games[randomIndex.Value], Vector3.zero, Quaternion.identity);
+        game.GetComponent<NetworkObject>().Spawn();
+        player1 = Instantiate(players1[randomIndex.Value], players1[randomIndex.Value].transform.position, Quaternion.identity);
+        player1.GetComponent<NetworkObject>().Spawn();
+        player2 = Instantiate(players2[randomIndex.Value], players2[randomIndex.Value].transform.position, Quaternion.identity);
+        player2.GetComponent<NetworkObject>().Spawn();
+    }
+
+    [ServerRpc]
+    private void DestroyTutorialServerRPC()
+    {
+        DestroyTutorialClientRpc();
+        Destroy(tutorial);
+    }
+
+    [ClientRpc]
+    private void DestroyTutorialClientRpc()
+    {
+        if (tutorial != null)
         {
             Destroy(tutorial);
         }
-        game = Instantiate(games[randomIndex], Vector3.zero, Quaternion.identity);
-        game.GetComponent<NetworkObject>().Spawn();
-        player1 = Instantiate(players1[randomIndex], players1[randomIndex].transform.position, Quaternion.identity);
-        player1.GetComponent<NetworkObject>().Spawn();
-        player2 = Instantiate(players2[randomIndex], players2[randomIndex].transform.position, Quaternion.identity);
-        player2.GetComponent<NetworkObject>().Spawn();
     }
 
     public void StartDestroyGame()
@@ -205,7 +225,7 @@ public class GameSpawn : NetworkBehaviour
     }
 
     public IEnumerator DestroyGame()
-    {   
+    {
         yield return new WaitForSeconds(0.1f);
         Destroy(player1);
         Destroy(player2);
@@ -219,7 +239,7 @@ public class GameSpawn : NetworkBehaviour
         {
             Destroy(obstacle);
         }
-        
+
         if (HP.Hearts_1 <= 0 || HP.Hearts_2 <= 0)
         {
             GameOver();
