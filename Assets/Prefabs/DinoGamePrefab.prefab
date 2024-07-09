@@ -317,8 +317,8 @@ MonoBehaviour:
     spawnChance: 0.08
   - prefab: {fileID: 8659738629053732295, guid: e8d9ed078abe45944871fb88d6682dd4, type: 3}
     spawnChance: 0.06
-  minSpawnRate: 1
-  maxSpawnRate: 2
+  minSpawnRate: 0.8
+  maxSpawnRate: 1.6
 --- !u!1 &2574190942648589643
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialSpeed: 5
-  acceleration: 0.1
+  acceleration: 0.2
   youlostTextP1: {fileID: 266632886150838574}
   youwinTextP1: {fileID: 7517370131906732940}
   youlostTextP2: {fileID: 2339967296774331715}
@@ -462,8 +462,8 @@ MonoBehaviour:
     spawnChance: 0.08
   - prefab: {fileID: 8659738629053732295, guid: e8d9ed078abe45944871fb88d6682dd4, type: 3}
     spawnChance: 0.06
-  minSpawnRate: 1
-  maxSpawnRate: 2
+  minSpawnRate: 0.8
+  maxSpawnRate: 1.6
 --- !u!1 &3249923979465890154
 GameObject:
   m_ObjectHideFlags: 0

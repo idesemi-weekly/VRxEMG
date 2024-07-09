@@ -722,7 +722,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The goal of this game is to lift and hold the same arm as maskass is lifting
+  m_text: The goal of this game is to lift and hold the same arm as Shy Guy is lifting
     the flag. It is a fast-paced reaction game, and a player wins if the other messes
     up while he lifts the good arm. Once you are ready to play, feel free to lift
     your right arm.
