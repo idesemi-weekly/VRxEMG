@@ -58,8 +58,6 @@ public class GameSpawn : NetworkBehaviour
         Player1Ready.action.started += OnPlayer1Ready;
         Player2Ready.action.started += OnPlayer2Ready;
 
-
-
         Invoke("SpawnTutorial", 1);
     }
 
@@ -184,11 +182,23 @@ public class GameSpawn : NetworkBehaviour
     {
         if (IsServer)
         {
-            randomIndex.Value = Random.Range(0, games.Length); // choose random game
-            Debug.Log("Game n°" + randomIndex.Value);
+            randomIndex.Value = Random.Range(0, games.Length);
+            UpdateRandomIndexClientRPC(randomIndex.Value);
         }
-        tutorial = Instantiate(tutorials[randomIndex.Value], new Vector3(-5, 2, -23.5f), Quaternion.identity); //spawn somewhere else
     }
+
+    [ClientRpc]
+    private void UpdateRandomIndexClientRPC(int index)
+    {
+        Debug.Log("Client: Received random index: " + index);
+        SpawnTutorialOnClients(index);
+    }
+
+    private void SpawnTutorialOnClients(int index)
+    {
+        tutorial = Instantiate(tutorials[index], new Vector3(-5, 2, -23.5f), Quaternion.identity); // spawn on client
+    }
+
 
     private void SpawnGame()
     {
