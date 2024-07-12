@@ -182,7 +182,7 @@ public class GameSpawn : NetworkBehaviour
     {
         if (IsServer)
         {
-            randomIndex.Value = Random.Range(0, games.Length);
+            randomIndex.Value = Random.Range(0, games.Length);//CHANGE THIS
             UpdateRandomIndexClientRPC(randomIndex.Value);
         }
     }
