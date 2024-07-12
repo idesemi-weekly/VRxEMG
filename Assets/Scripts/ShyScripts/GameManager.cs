@@ -60,6 +60,8 @@ public class ShyGuyGameManager : NetworkBehaviour
 
     private void Start()
     {
+        player1WinText.SetActive(false);
+        player2WinText.SetActive(false);
         StartCoroutine(GameLoop());
     }
 
@@ -93,7 +95,7 @@ public class ShyGuyGameManager : NetworkBehaviour
                     GameOverClientRPC(2);
                 }
 
-                if (flagDelay > 0.75f) flagDelay -= 0.25f;
+                if (flagDelay > 1f) flagDelay -= 0.25f;
 
                 UpdateShyGuyAnimationClientRPC("Idle");
                 yield return new WaitForSeconds(flagDelay / 2);
