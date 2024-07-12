@@ -317,7 +317,7 @@ MonoBehaviour:
     spawnChance: 0.08
   - prefab: {fileID: 8659738629053732295, guid: e8d9ed078abe45944871fb88d6682dd4, type: 3}
     spawnChance: 0.06
-  minSpawnRate: 0.8
+  minSpawnRate: 1
   maxSpawnRate: 1.6
 --- !u!1 &2574190942648589643
 GameObject:
@@ -462,7 +462,7 @@ MonoBehaviour:
     spawnChance: 0.08
   - prefab: {fileID: 8659738629053732295, guid: e8d9ed078abe45944871fb88d6682dd4, type: 3}
     spawnChance: 0.06
-  minSpawnRate: 0.8
+  minSpawnRate: 1
   maxSpawnRate: 1.6
 --- !u!1 &3249923979465890154
 GameObject:
