@@ -182,7 +182,8 @@ public class GameSpawn : NetworkBehaviour
     {
         if (IsServer)
         {
-            randomIndex.Value = Random.Range(0, games.Length);//CHANGE THIS
+            //randomIndex.Value = Random.Range(0, games.Length);//CHANGE THIS
+            randomIndex.Value = 2;
             UpdateRandomIndexClientRPC(randomIndex.Value);
         }
     }
@@ -206,12 +207,18 @@ public class GameSpawn : NetworkBehaviour
         {
             DestroyTutorialServerRPC();
         }
-        game = Instantiate(games[randomIndex.Value], Vector3.zero, Quaternion.identity);
+        
+        game = Instantiate(games[randomIndex.Value], games[randomIndex.Value].transform.position, Quaternion.identity);
         game.GetComponent<NetworkObject>().Spawn();
         player1 = Instantiate(players1[randomIndex.Value], players1[randomIndex.Value].transform.position, Quaternion.identity);
         player1.GetComponent<NetworkObject>().Spawn();
         player2 = Instantiate(players2[randomIndex.Value], players2[randomIndex.Value].transform.position, Quaternion.identity);
         player2.GetComponent<NetworkObject>().Spawn();
+
+        if(randomIndex.Value == 2){//for pong
+            PongGameManager.Instance.SetPaddles(player1, player2);
+        }
+        
     }
 
     [ServerRpc]
