@@ -18,6 +18,7 @@ public class GameSpawn : NetworkBehaviour
     public GameObject[] tutorials;
     public GameObject[] players1;
     public GameObject[] players2;
+    [SerializeField] private GameObject ball;
     private NetworkVariable<bool> p1ready = new NetworkVariable<bool>(false);
     private NetworkVariable<bool> p2ready = new NetworkVariable<bool>(false);
     private NetworkVariable<int> randomIndex = new NetworkVariable<int>();
@@ -217,6 +218,8 @@ public class GameSpawn : NetworkBehaviour
 
         if(randomIndex.Value == 2){//for pong
             PongGameManager.Instance.SetPaddles(player1, player2);
+            GameObject ballInstance = Instantiate(ball, ball.transform.position, Quaternion.identity);
+            ballInstance.GetComponent<NetworkObject>().Spawn();
         }
         
     }
