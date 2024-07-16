@@ -143,7 +143,7 @@ public class GameSpawn : NetworkBehaviour
             P2HUD.SetActive(false);
             UpdateHUDOnClientRPC(false);
             DestroyTutorialServerRPC();
-            OnDisable(); // Disable input actions after game starts  
+            OnDisable();
             Invoke("SpawnGame", 1);
         }
     }
@@ -151,7 +151,6 @@ public class GameSpawn : NetworkBehaviour
     [ClientRpc]
     private void UpdateHUDOnClientRPC(bool active)
     {
-        // Update HUD on clients and checks maybe?
         P1HUD.SetActive(active);
         P2HUD.SetActive(active);
     }
@@ -183,8 +182,7 @@ public class GameSpawn : NetworkBehaviour
     {
         if (IsServer)
         {
-            //randomIndex.Value = Random.Range(0, games.Length);//CHANGE THIS
-            randomIndex.Value = 2;
+            randomIndex.Value = Random.Range(0, games.Length);//CHANGE THIS
             UpdateRandomIndexClientRPC(randomIndex.Value);
         }
     }
