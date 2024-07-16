@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class BallController : MonoBehaviour
+public class BallController : NetworkBehaviour
 {
-    public float speed = 5f;
+    private NetworkVariable<Vector3> networkVelocity = new NetworkVariable<Vector3>(writePerm: NetworkVariableWritePermission.Server);
+    private NetworkVariable<Vector3> networkPosition = new NetworkVariable<Vector3>(writePerm: NetworkVariableWritePermission.Server);
+
+    private float speed = 7f;
     private Rigidbody rb;
     private Vector3 startPosition;
 
@@ -13,42 +15,88 @@ public class BallController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
         startPosition = transform.position;
-        LaunchBall();
+
+        if (IsServer)
+        {
+            Invoke("LaunchBall", 2f);
+        }
+    }
+
+    void Update()
+    {
+        if (!IsServer)
+        {
+            rb.linearVelocity = networkVelocity.Value;
+            transform.position = networkPosition.Value;
+        }
     }
 
     private void LaunchBall()
     {
         float x = Random.Range(0, 2) == 0 ? -1 : 1;
-        float y = Random.Range(0, 2) == 0 ? -1 : 1;
-        rb.linearVelocity = new Vector3(x, y, 0) * speed;
+        float y = 0f;
+
+        while (y >= -0.25f && y <= 0.25f)
+        {
+            y = Random.Range(-1f, 1f);
+        }
+
+        Vector3 initialVelocity = new Vector3(x, y, 0) * speed;
+        UpdateVelocityServerRpc(initialVelocity);
     }
 
     public void ResetPosition()
     {
+        if (!IsServer) return;
+
         rb.linearVelocity = Vector3.zero;
         transform.position = startPosition;
-        LaunchBall();
+        networkVelocity.Value = Vector3.zero;
+        networkPosition.Value = startPosition;
+        Invoke("LaunchBall", 2f);
+    }
+
+    [ServerRpc]
+    private void UpdateVelocityServerRpc(Vector3 newVelocity)
+    {
+        rb.linearVelocity = newVelocity;
+        networkVelocity.Value = newVelocity;
+        networkPosition.Value = transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Goal1"))
+        if (!IsServer) return;
+
+        else if (other.gameObject.CompareTag("Goal1"))
         {
-            speed = 5f;
-            PongGameManager.Instance.UpdateScore(1);
+            speed = Random.Range(6f, 10f);
+            PongGameManager.Instance.UpdateScoreServerRPC(1);
+            ResetPosition();
         }
         else if (other.gameObject.CompareTag("Goal2"))
         {
-            speed = 5f;
-            PongGameManager.Instance.UpdateScore(2);
+            speed = Random.Range(6f, 10f);
+            PongGameManager.Instance.UpdateScoreServerRPC(2);
+            ResetPosition();
+        }
+        else if (!IsServer)
+        {
+            return;
         }
         else if (other.gameObject.CompareTag("ObstacleCollision"))
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, -rb.linearVelocity.y, 0);
+            Vector3 newVelocity = new Vector3(rb.linearVelocity.x, -rb.linearVelocity.y, 0);
+            UpdateVelocityServerRpc(newVelocity);
         }
-        else{
-            rb.linearVelocity = new Vector3(-rb.linearVelocity.x, rb.linearVelocity.y, 0);
-            speed += 0.5f;
+        else
+        {
+            float newSpeed = speed + 2f;
+            Vector3 currentVelocity = rb.linearVelocity;
+            Vector3 newVelocity = currentVelocity.normalized * newSpeed;
+            newVelocity = new Vector3(-newVelocity.x, newVelocity.y, 0);
+            UpdateVelocityServerRpc(newVelocity);
+            speed = newSpeed;
         }
     }
 }

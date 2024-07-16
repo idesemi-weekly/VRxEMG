@@ -32,6 +32,7 @@ public class PongGameManager : NetworkBehaviour
         if (Instance == null)
         {
             Instance = this;
+            ball.SetActive(true);
         }
         else
         {
@@ -85,12 +86,12 @@ public class PongGameManager : NetworkBehaviour
         paddle2.GetComponent<PaddleController>().MoveDown();
     }
 
-    public void UpdateScore(int player)
+    [ServerRpc]
+    public void UpdateScoreServerRPC(int player)
     {
         if (player == 1)
         {
             player1Score++;
-            player1ScoreText.text = player1Score.ToString();
             
             if (player1Score >= 3)
             {
@@ -104,7 +105,6 @@ public class PongGameManager : NetworkBehaviour
         else
         {
             player2Score++;
-            player2ScoreText.text = player2Score.ToString();
 
             if (player2Score >= 3)
             {
@@ -116,11 +116,44 @@ public class PongGameManager : NetworkBehaviour
             }
         }
 
+        player1ScoreText.text = player1Score.ToString();
+        player2ScoreText.text = player2Score.ToString();
+
+        UpdateScoreClientRPC(player1Score, player2Score);
+
         if (game == true)
         {
             ResetBall();
         }
     }
+
+    [ClientRpc]
+    private void UpdateScoreClientRPC(int p1Score, int p2Score)
+    {
+        player1ScoreText.text = p1Score.ToString();
+        player2ScoreText.text = p2Score.ToString();
+
+        if (!IsServer)
+        {
+            if (p1Score >= 3)
+            {
+                HP.Hearts_2--;
+                game = false;
+                ball.SetActive(false);
+                player1WinText.SetActive(true);
+                GameSpawn.Instance.StartDestroyGame();
+            }
+            else if (p2Score >= 3)
+            {
+                HP.Hearts_1--;
+                game = false;
+                ball.SetActive(false);
+                player2WinText.SetActive(true);
+                GameSpawn.Instance.StartDestroyGame();
+            }
+        }
+    }
+
 
     private void ResetBall()
     {

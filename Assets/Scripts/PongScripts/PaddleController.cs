@@ -3,7 +3,9 @@ using Unity.Netcode;
 
 public class PaddleController : NetworkBehaviour
 {
-    public float speed = 500f;
+    private float speed = 500f;
+    private float minY = -10f;
+    private float maxY = 10f;
 
     private Vector3 direction;
 
@@ -23,20 +25,20 @@ public class PaddleController : NetworkBehaviour
 
     public void MoveUp()
     {
-        Debug.Log("MoveUp");
-        direction = Vector3.up * speed;//change this
+        direction = Vector3.up * speed;
     }
 
     public void MoveDown()
     {
-        Debug.Log("MoveDown");
         direction = Vector3.down * speed;
     }
 
     [ServerRpc]
     private void MovementServerRpc(Vector3 moveDirection)
     {
-        transform.Translate(moveDirection * Time.deltaTime);
+        Vector3 newPosition = transform.position + moveDirection * Time.deltaTime;
+        newPosition.y = Mathf.Clamp(newPosition.y, minY, maxY);
+        transform.position = newPosition;
         UpdateClientRpc(transform.position);
     }
 
