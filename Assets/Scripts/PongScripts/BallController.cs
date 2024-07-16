@@ -91,7 +91,7 @@ public class BallController : NetworkBehaviour
         }
         else
         {
-            float newSpeed = speed + 2f;
+            float newSpeed = speed * 1.25f;
             Vector3 currentVelocity = rb.linearVelocity;
             Vector3 newVelocity = currentVelocity.normalized * newSpeed;
             newVelocity = new Vector3(-newVelocity.x, newVelocity.y, 0);
