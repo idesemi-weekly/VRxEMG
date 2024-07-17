@@ -80,10 +80,6 @@ public class BallController : NetworkBehaviour
             PongGameManager.Instance.UpdateScoreServerRPC(2);
             ResetPosition();
         }
-        else if (!IsServer)
-        {
-            return;
-        }
         else if (other.gameObject.CompareTag("ObstacleCollision"))
         {
             Vector3 newVelocity = new Vector3(rb.linearVelocity.x, -rb.linearVelocity.y, 0);
