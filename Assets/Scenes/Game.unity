@@ -157,7 +157,7 @@ MonoBehaviour:
   tutorials:
   - {fileID: 4068685834388732216, guid: d4a161cf2bf261344bcd192e1911dbe1, type: 3}
   - {fileID: 4068685834388732216, guid: a656e28c3d2fed04fa25cceac32a425e, type: 3}
-  - {fileID: 4068685834388732216, guid: a656e28c3d2fed04fa25cceac32a425e, type: 3}
+  - {fileID: 4068685834388732216, guid: d127b1a06b9ae094fa30788c41a24f1c, type: 3}
   players1:
   - {fileID: 992539901644603012, guid: 39fb23be783c54c4ba27ef1e9780775e, type: 3}
   - {fileID: 8984930717593462190, guid: 4cf30d6546dcee2439a3b296c3fe49e2, type: 3}
