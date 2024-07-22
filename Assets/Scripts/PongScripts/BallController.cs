@@ -6,7 +6,7 @@ public class BallController : NetworkBehaviour
     private NetworkVariable<Vector3> networkVelocity = new NetworkVariable<Vector3>(writePerm: NetworkVariableWritePermission.Server);
     private NetworkVariable<Vector3> networkPosition = new NetworkVariable<Vector3>(writePerm: NetworkVariableWritePermission.Server);
 
-    private float speed = 7f;
+    private float speed = 9f;
     private Rigidbody rb;
     private Vector3 startPosition;
 
@@ -70,13 +70,13 @@ public class BallController : NetworkBehaviour
 
         else if (other.gameObject.CompareTag("Goal1"))
         {
-            speed = Random.Range(6f, 10f);
+            speed = Random.Range(9f, 12f);
             PongGameManager.Instance.UpdateScoreServerRPC(1);
             ResetPosition();
         }
         else if (other.gameObject.CompareTag("Goal2"))
         {
-            speed = Random.Range(6f, 10f);
+            speed = Random.Range(9f, 12f);
             PongGameManager.Instance.UpdateScoreServerRPC(2);
             ResetPosition();
         }
@@ -87,7 +87,11 @@ public class BallController : NetworkBehaviour
         }
         else
         {
-            float newSpeed = speed * 1.25f;
+            float newSpeed = speed * 1.2f;
+            if (newSpeed > 36f)
+            {
+                newSpeed = 36f;
+            }
             Vector3 currentVelocity = rb.linearVelocity;
             Vector3 newVelocity = currentVelocity.normalized * newSpeed;
             newVelocity = new Vector3(-newVelocity.x, newVelocity.y, 0);
