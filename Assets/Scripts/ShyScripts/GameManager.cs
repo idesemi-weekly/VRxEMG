@@ -9,7 +9,7 @@ public class ShyGuyGameManager : NetworkBehaviour
 
     private bool game = false;
 
-    [SerializeField] private float flagDelay = 2.5f;
+    private float flagDelay = 3.5f;
 
     [SerializeField] private InputActionReference player1Left;
     [SerializeField] private InputActionReference player1Right;
@@ -84,7 +84,7 @@ public class ShyGuyGameManager : NetworkBehaviour
 
                 if (!player1Correct && !player2Correct)
                 {
-                    //Debug.Log("Both players failed to respond");
+                    Debug.Log("Both players failed to respond");
                 }
                 else if (!player1Correct)
                 {
@@ -95,7 +95,7 @@ public class ShyGuyGameManager : NetworkBehaviour
                     GameOverClientRPC(2);
                 }
 
-                if (flagDelay > 1f) flagDelay -= 0.25f;
+                if (flagDelay > 1.5f) flagDelay -= 0.25f;
 
                 UpdateShyGuyAnimationClientRPC("Idle");
                 yield return new WaitForSeconds(flagDelay / 2);
