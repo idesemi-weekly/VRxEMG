@@ -8180,12 +8180,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8521666479375142480, guid: 63a0047a16ab77241824e928a5a56898, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: a47a4679a316b3d46859b8516ed77e9d, type: 3}
+    - target: {fileID: 8521666479375142480, guid: 63a0047a16ab77241824e928a5a56898, type: 3}
       propertyPath: m_PlayOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8521666479375142480, guid: 63a0047a16ab77241824e928a5a56898, type: 3}
       propertyPath: 'm_DirectAudioMutes.Array.data[0]'
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9075667665975899519, guid: 63a0047a16ab77241824e928a5a56898, type: 3}
       propertyPath: m_AnchorMax.x
