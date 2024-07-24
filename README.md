@@ -25,7 +25,8 @@ Only Local Multiplayer is available and we have no plan to make an online releas
 
 1. Download the [OpenBCI application](https://openbci.com/downloads) on your computer.
 
-2. Plug the OpenBCI Bluetooth Dongle in, turn on the Cyton board and attach the sensors to the arms of each players by trying to fix it on the forearm muscles.
+2. Plug the OpenBCI Bluetooth Dongle in, turn on the Cyton board and attach the sensors to the arms of each players by trying to fix it on the forearm muscles.  
+*Channel 0 is for the right arm of P1, Channel 1 is for the right arm of P2, Channel 2 is for the left arm of P1, and Channel 3 is for the left arm of P2.*
 
 3. Run the OpenBCI application and use the networking window to setup the LSL protocol. 
 
