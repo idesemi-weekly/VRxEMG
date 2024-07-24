@@ -11,7 +11,6 @@ Only Local Multiplayer is available and we have no plan to make an online releas
 - 1 OpenBCI Bluetooth Dongle 
 - 2 VR headsets with the game APK installed (Oculus Quest) or through the EXE with VR linking.
 - Python (ver>=3.8 and the following dependencies : #)
-- Unity 6 Preview (for now, might not be needed in the future)
 
 
 ## Features :
