@@ -9157,6 +9157,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1241538791835582287, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241538791835582287, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241538791835582287, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241538791835582287, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1363272588353677040, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_RetainTransformParent
       value: 1
@@ -9183,6 +9199,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1637925174538440560, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925677196038866011, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2065178529925069460, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
@@ -9270,6 +9290,42 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2424788950956895889, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424788950956895889, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424788950956895889, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424788950956895889, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976951737223317950, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -261.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055738354731761426, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055738354731761426, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055738354731761426, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055738354731761426, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3274523901724794665, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
@@ -9297,6 +9353,27 @@ PrefabInstance:
     - target: {fileID: 3838180152858810771, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_AABB.m_Center.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021614336210862317, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021614336210862317, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021614336210862317, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021614336210862317, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060013390931682815, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_text
+      value: You can drag windows by holding the grip buttons when they have a bar
+        under them to place them wherever you want to !
       objectReference: {fileID: 0}
     - target: {fileID: 4304245806318289060, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -9328,7 +9405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4461373178398911596, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_text
-      value: 'Now just hold the A and B button simultaneously to hide this panel,
+      value: 'Now just hold the A and B buttons simultaneously to hide this panel,
         and you can also dispose of your controllers if you''d like !
 
 
@@ -9348,6 +9425,22 @@ PrefabInstance:
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
+    - target: {fileID: 4585009706692196092, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585009706692196092, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585009706692196092, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585009706692196092, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4913161773096623934, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9379,6 +9472,27 @@ PrefabInstance:
     - target: {fileID: 4920655098044402729, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921707972865554973, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_text
+      value: 'Lift your right arm once you are ready after watching the video !
+
+
+        If
+        you missed anything, you can just get back to the first card by clicking
+        right below !'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921707972865554973, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_fontSize
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921707972865554973, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921707972865554973, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 5313964706388422224, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -9516,6 +9630,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7302495779787989682, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7310018901904391696, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9529,6 +9647,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7310018901904391696, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7629822615777497326, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7629822615777497326, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7629822615777497326, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7629822615777497326, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -9591,6 +9725,22 @@ PrefabInstance:
     - target: {fileID: 9009631088471292311, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025274326601595685, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025274326601595685, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025274326601595685, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025274326601595685, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9201946505947780297, guid: 3fd648d542e87c24e899f3e4562597eb, type: 3}
       propertyPath: m_AnchoredPosition.y

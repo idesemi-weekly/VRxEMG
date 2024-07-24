@@ -8,7 +8,7 @@ using TMPro;
 public class GameSpawn : NetworkBehaviour
 {
     public static GameSpawn Instance { get; private set; }
-
+    
     private GameObject game;
     private GameObject tutorial;
     private GameObject player1;
@@ -22,6 +22,7 @@ public class GameSpawn : NetworkBehaviour
     private NetworkVariable<bool> p1ready = new NetworkVariable<bool>(false);
     private NetworkVariable<bool> p2ready = new NetworkVariable<bool>(false);
     private NetworkVariable<int> randomIndex = new NetworkVariable<int>();
+    private int previousIndex = -1;
 
     [SerializeField] private GameObject P1HUD;
     [SerializeField] private GameObject P2HUD;
@@ -178,22 +179,22 @@ public class GameSpawn : NetworkBehaviour
         NetworkManager.Singleton.SceneManager.LoadScene("Main Lobby", LoadSceneMode.Single);
     }
 
+
     private void SpawnTutorial()
     {
         if (IsServer)
         {
-            int index = Random.Range(0, games.Length);
-            //GAME 1 (SHYGUY) DOES NOT WORK WITH EMG YET
-            if (index == 1)
+            int newIndex;
+            do
             {
-                index = Random.Range(0, 2) == 0 ? 0 : 2;
-            }
+                newIndex = Random.Range(0, games.Length);
+            } while (newIndex == previousIndex);
 
-            randomIndex.Value = index;
-            UpdateRandomIndexClientRPC(randomIndex.Value);
+            previousIndex = newIndex;
+            randomIndex.Value = newIndex;
+            UpdateRandomIndexClientRPC(newIndex);
         }
     }
-
 
     [ClientRpc]
     private void UpdateRandomIndexClientRPC(int index)

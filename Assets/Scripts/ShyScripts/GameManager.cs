@@ -8,7 +8,6 @@ public class ShyGuyGameManager : NetworkBehaviour
     public static ShyGuyGameManager Instance { get; private set; }
 
     private bool game = false;
-
     private float flagDelay = 3.5f;
 
     [SerializeField] private InputActionReference player1Left;
@@ -21,6 +20,10 @@ public class ShyGuyGameManager : NetworkBehaviour
     [SerializeField] private GameObject player2WinText;
 
     private string raisedFlag;
+    private bool player1LeftResponse = false;
+    private bool player1RightResponse = false;
+    private bool player2LeftResponse = false;
+    private bool player2RightResponse = false;
 
     private void Awake()
     {
@@ -48,6 +51,11 @@ public class ShyGuyGameManager : NetworkBehaviour
         player1Right.action.Enable();
         player2Left.action.Enable();
         player2Right.action.Enable();
+
+        player1Left.action.started += OnPlayer1LeftInput;
+        player1Right.action.started += OnPlayer1RightInput;
+        player2Left.action.started += OnPlayer2LeftInput;
+        player2Right.action.started += OnPlayer2RightInput;
     }
 
     private void OnDisable()
@@ -56,6 +64,11 @@ public class ShyGuyGameManager : NetworkBehaviour
         player1Right.action.Disable();
         player2Left.action.Disable();
         player2Right.action.Disable();
+
+        player1Left.action.started -= OnPlayer1LeftInput;
+        player1Right.action.started -= OnPlayer1RightInput;
+        player2Left.action.started -= OnPlayer2LeftInput;
+        player2Right.action.started -= OnPlayer2RightInput;
     }
 
     private void Start()
@@ -66,8 +79,9 @@ public class ShyGuyGameManager : NetworkBehaviour
     }
 
     private IEnumerator GameLoop()
-    {   
-        if(IsServer){
+    {
+        if (IsServer)
+        {
             yield return new WaitForSeconds(1f);
             game = true;
 
@@ -76,11 +90,25 @@ public class ShyGuyGameManager : NetworkBehaviour
                 raisedFlag = GenerateCommand();
                 UpdateShyGuyAnimationClientRPC(raisedFlag);
 
-                //for loop here with yield return
-                yield return new WaitForSeconds(flagDelay);
+                ResetPlayerResponses();
 
-                bool player1Correct = CheckPlayerResponse(1);
-                bool player2Correct = CheckPlayerResponse(2);
+                float startTime = Time.time;
+                bool player1Correct = false;
+                bool player2Correct = false;
+
+                while (Time.time - startTime < flagDelay)
+                {
+                    player1Correct = CheckPlayerResponse(1);
+                    player2Correct = CheckPlayerResponse(2);
+
+                    if (player1Correct || player2Correct)
+                    {
+                        Debug.Log("good");
+                        break;
+                    }
+
+                    yield return null;
+                }
 
                 if (!player1Correct && !player2Correct)
                 {
@@ -101,7 +129,6 @@ public class ShyGuyGameManager : NetworkBehaviour
                 yield return new WaitForSeconds(flagDelay / 2);
             }
         }
-        
     }
 
     [ClientRpc]
@@ -143,20 +170,48 @@ public class ShyGuyGameManager : NetworkBehaviour
     {
         if (playerNumber == 1)
         {
-            if (raisedFlag == "Raise Red Flag" && player1Left.action.IsPressed() && !player1Right.action.IsPressed())
+            if (raisedFlag == "Raise Red Flag" && player1LeftResponse && !player1RightResponse)
                 return true;
-            if (raisedFlag == "Raise White Flag" && player1Right.action.IsPressed() && !player1Left.action.IsPressed())
+            if (raisedFlag == "Raise White Flag" && player1RightResponse && !player1LeftResponse)
                 return true;
         }
         else if (playerNumber == 2)
         {
-            if (raisedFlag == "Raise Red Flag" && player2Left.action.IsPressed() && !player2Right.action.IsPressed())
+            if (raisedFlag == "Raise Red Flag" && player2LeftResponse && !player2RightResponse)
                 return true;
-            if (raisedFlag == "Raise White Flag" && player2Right.action.IsPressed() && !player2Left.action.IsPressed())
+            if (raisedFlag == "Raise White Flag" && player2RightResponse && !player2LeftResponse)
                 return true;
         }
 
         return false;
+    }
+
+    private void ResetPlayerResponses()
+    {
+        player1LeftResponse = false;
+        player1RightResponse = false;
+        player2LeftResponse = false;
+        player2RightResponse = false;
+    }
+
+    private void OnPlayer1LeftInput(InputAction.CallbackContext ctx)
+    {
+        player1LeftResponse = true;
+    }
+
+    private void OnPlayer1RightInput(InputAction.CallbackContext ctx)
+    {
+        player1RightResponse = true;
+    }
+
+    private void OnPlayer2LeftInput(InputAction.CallbackContext ctx)
+    {
+        player2LeftResponse = true;
+    }
+
+    private void OnPlayer2RightInput(InputAction.CallbackContext ctx)
+    {
+        player2RightResponse = true;
     }
 
     public void GameOver(int playerNumber)
