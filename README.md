@@ -17,14 +17,15 @@ Only Local Multiplayer is available and we have no plan to make an online releas
 ## Features :
 
 - Multiplayer minigames (Dino Run, Pong, etc.) that will allow you to compete and experience a WarioWare-like game in VR.
-- EMG sensors to control the player input (the server receives all the input directly, not through the clients.)
+  
+- EMG sensors to control the player input (the server receives all the input directly, not through the clients, they are only there as screens for the players.)
 
 
 ## Installation :
 
 1. Download the [OpenBCI application](https://openbci.com/downloads) on your computer.
 
-2. Plug the OpenBCI Bluetooth Dongle in, turn on the Cyton board and attach the sensors to the arms of each players by trying to fix it on the upper arm muscles.
+2. Plug the OpenBCI Bluetooth Dongle in, turn on the Cyton board and attach the sensors to the arms of each players by trying to fix it on the forearm muscles.
 
 3. Run the OpenBCI application and use the networking window to setup the LSL protocol. 
 
