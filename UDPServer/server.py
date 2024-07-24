@@ -1,17 +1,18 @@
 import socket
 
-def main():
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+def udp_client():
+    server_address = ('localhost', 11000)
+    message = '{"type":"emg", "data":[0.99,0.99,0.023273082,0.04411545,0.8]}'
 
-    server_address = ('172.16.176.13', 5005)
-    print('starting up on {} port {}'.format(*server_address))
-    sock.bind(server_address)
-    print(server_address)
+    # Créer un socket UDP
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
+        try:
+            # Envoyer des données
+            print(f"Envoi de {message} à {server_address}")
+            sent = sock.sendto(message.encode(), server_address)
 
-    while True:
-        print('\nwaiting to receive message')
-        data = sock.recvfrom(4096)
-        print(data)
-            
-if __name__ == '__main__':
-    main()
+        except Exception as e:
+            print(f"Erreur : {e}")
+
+if __name__ == "__main__":
+    udp_client()

@@ -182,11 +182,18 @@ public class GameSpawn : NetworkBehaviour
     {
         if (IsServer)
         {
-            randomIndex.Value = Random.Range(0, games.Length);//CHANGE THIS
-            //randomIndex.Value = 1;
+            int index = Random.Range(0, games.Length);
+            //GAME 1 (SHYGUY) DOES NOT WORK WITH EMG YET
+            if (index == 1)
+            {
+                index = Random.Range(0, 2) == 0 ? 0 : 2;
+            }
+
+            randomIndex.Value = index;
             UpdateRandomIndexClientRPC(randomIndex.Value);
         }
     }
+
 
     [ClientRpc]
     private void UpdateRandomIndexClientRPC(int index)
