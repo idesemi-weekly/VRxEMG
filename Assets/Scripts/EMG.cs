@@ -22,10 +22,12 @@ public class EMG : MonoBehaviour
     private static EMG instance;
     public static EMG Instance => instance;
 
-    private const int ListenPort = 11000;
+    private const int ListenPort = 12345;
     private UdpClient udpServer;
     private CancellationTokenSource cancellationTokenSource;
     private Gamepad virtualGamepad;
+    private EmgData currentEmgData;
+    private bool newEmgDataReceived;
 
     private void Awake()
     {
@@ -44,7 +46,8 @@ public class EMG : MonoBehaviour
         cancellationTokenSource = new CancellationTokenSource();
         udpServer = new UdpClient(ListenPort);
         virtualGamepad = InputSystem.AddDevice<Gamepad>();
-        await Task.Run(() => ListenForData(cancellationTokenSource.Token));
+        Task.Run(() => ListenForData(cancellationTokenSource.Token));
+        await Task.Run(() => ProcessDataEveryInterval(cancellationTokenSource.Token));
     }
 
     private async Task ListenForData(CancellationToken cancellationToken)
@@ -66,13 +69,33 @@ public class EMG : MonoBehaviour
 
             if (emgData != null && emgData.Type == "emg" && emgData.Data != null)
             {
-                for (int i = 0; i < emgData.Data.Count; i++)
-                {
-                    if (emgData.Data[i] >= 0.9)
-                    {
-                        SimulateButtonPress(i);
-                    }
-                }
+                currentEmgData = emgData;
+                newEmgDataReceived = true;
+            }
+        }
+    }
+
+    private async Task ProcessDataEveryInterval(CancellationToken cancellationToken)
+    {
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            await Task.Delay(300, cancellationToken);
+            if (newEmgDataReceived)
+            {
+                ProcessCurrentEmgData();
+                newEmgDataReceived = false;
+            }
+        }
+    }
+
+    private void ProcessCurrentEmgData()
+    {
+        if (currentEmgData == null) return;
+        for (int i = 0; i < currentEmgData.Data.Count; i++)
+        {
+            if (currentEmgData.Data[i] >= 0.9)
+            {
+                SimulateButtonPress(i);
             }
         }
     }
@@ -104,5 +127,22 @@ public class EMG : MonoBehaviour
 
         gamepadState = new GamepadState();
         InputSystem.QueueStateEvent(virtualGamepad, gamepadState);
+    }
+
+    private void OnDestroy()
+    {
+        Cleanup();
+    }
+
+    private void OnApplicationQuit()
+    {
+        Cleanup();
+    }
+
+    private void Cleanup()
+    {
+        cancellationTokenSource?.Cancel();
+        udpServer?.Close();
+        InputSystem.RemoveDevice(virtualGamepad);
     }
 }
