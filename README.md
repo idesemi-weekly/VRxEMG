@@ -6,7 +6,7 @@ Only Local Multiplayer is available and we have no plan to make an online releas
 ## Requirements :
 
 - A PC
-- 2 VR headsets with the game APK installed (Oculus Quest) or through the EXE with VR linking.
+- 2 VR headsets with the game APK installed (Oculus Quest) or through PCVR with the clients running on different computers
 - 5 EMG sensors (with the [OpenBCI app](https://openbci.com/downloads))
 - 1 Cyton Board
 - 1 OpenBCI Bluetooth Dongle 
