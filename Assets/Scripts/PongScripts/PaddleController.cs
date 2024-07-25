@@ -3,7 +3,7 @@ using Unity.Netcode;
 
 public class PaddleController : NetworkBehaviour
 {
-    private float speed = 500f;
+    private float speed = 1000f;
     private float minY = -11f;
     private float maxY = 11f;
 
