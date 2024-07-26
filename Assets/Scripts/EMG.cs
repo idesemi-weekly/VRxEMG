@@ -79,7 +79,7 @@ public class EMG : MonoBehaviour
     {
         while (!cancellationToken.IsCancellationRequested)
         {
-            await Task.Delay(300, cancellationToken);
+            await Task.Delay(100, cancellationToken);
             if (newEmgDataReceived)
             {
                 ProcessCurrentEmgData();
