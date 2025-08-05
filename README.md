@@ -56,9 +56,9 @@ Only Local Multiplayer is available and we have no plan to make an online releas
 
 ## Authors :
 
-- [Dylan THOMAS](https://github.com/Dylouwu) : VR code implementation and microgame developer
+- [Dylouwu](https://github.com/Dylouwu) : VR code implementation and microgame developer
 
-- [Valentin CAZIN](https://github.com/ItsMyRainbow) : EMG implementation and concept
+- [Valentin](https://github.com/ItsMyRainbow) : EMG implementation and concept
 
 
 ## License :
